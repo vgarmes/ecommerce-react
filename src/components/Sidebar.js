@@ -12,8 +12,13 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemIcon,
 } from "@material-ui/core";
-import { Menu as MenuIcon, ShoppingCart } from "@material-ui/icons";
+import {
+  Menu as MenuIcon,
+  AccountCircle,
+  ShoppingCart,
+} from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -23,7 +28,38 @@ const Sidebar = (props) => {
   const classes = useStyles();
   return (
     <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor}>
-      <Toolbar className={classes.drawerHeader}></Toolbar>
+      <Toolbar className={classes.drawerHeader}>
+        <ListItem
+          style={{
+            height: "100%",
+            justifyContent: anchor === "left" ? "flex-start" : "flex-end",
+          }}
+          disableGutters
+        >
+          <ListItemIcon>
+            <IconButton
+              component={Link}
+              to="/cart"
+              aria-label="Show cart items"
+              color="inherit"
+            >
+              <Badge badgeContent={2} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+          </ListItemIcon>
+          <ListItemIcon>
+            <IconButton
+              component={Link}
+              to="/"
+              aria-label="Log in"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </ListItemIcon>
+        </ListItem>
+      </Toolbar>
       <List className={classes.drawerList}>
         {links.map((link) => {
           const { id, text, url } = link;
@@ -54,6 +90,7 @@ const Sidebar = (props) => {
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     width: 200,
+    justifyContent: "flex-end",
   },
   drawerLink: {
     textDecoration: "none",

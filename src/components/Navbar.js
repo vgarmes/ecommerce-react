@@ -99,6 +99,7 @@ const Navbar = () => {
               <IconButton
                 aria-label="Open navigation"
                 onClick={handleDrawerOpen}
+                color="inherit"
               >
                 <MenuIcon />
               </IconButton>

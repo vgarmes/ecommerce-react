@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
+  Close as CloseIcon,
   AccountCircle,
   ShoppingCart,
 } from "@material-ui/icons";
@@ -36,26 +37,9 @@ const Sidebar = (props) => {
           }}
           disableGutters
         >
-          <ListItemIcon>
-            <IconButton
-              component={Link}
-              to="/cart"
-              aria-label="Show cart items"
-              color="inherit"
-            >
-              <Badge badgeContent={2} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            </IconButton>
-          </ListItemIcon>
-          <ListItemIcon>
-            <IconButton
-              component={Link}
-              to="/"
-              aria-label="Log in"
-              color="inherit"
-            >
-              <AccountCircle />
+          <ListItemIcon className={classes.closeIcon}>
+            <IconButton onClick={onClose} aria-label="Close Navigation">
+              <CloseIcon color="primary" />
             </IconButton>
           </ListItemIcon>
         </ListItem>

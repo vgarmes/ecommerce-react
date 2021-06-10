@@ -54,12 +54,6 @@ const Navbar = () => {
             eCommerce
           </Typography>
 
-          <Hidden mdUp>
-            <IconButton aria-label="Open navigation" onClick={handleDrawerOpen}>
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
-
           <Hidden smDown>
             <NavLinks>
               {links.map((link) => {
@@ -78,29 +72,38 @@ const Navbar = () => {
                 );
               })}
             </NavLinks>
-
-            <div>
-              <IconButton
-                component={Link}
-                to="/cart"
-                aria-label="Show cart items"
-                color="inherit"
-              >
-                <Badge badgeContent={2} color="secondary">
-                  <ShoppingCart />
-                </Badge>
-              </IconButton>
-
-              <IconButton
-                component={Link}
-                to="/"
-                aria-label="Log in"
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </div>
           </Hidden>
+
+          <div>
+            <IconButton
+              component={Link}
+              to="/cart"
+              aria-label="Show cart items"
+              color="inherit"
+            >
+              <Badge badgeContent={2} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
+
+            <IconButton
+              component={Link}
+              to="/"
+              aria-label="Log in"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+
+            <Hidden mdUp>
+              <IconButton
+                aria-label="Open navigation"
+                onClick={handleDrawerOpen}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+          </div>
         </Toolbar>
       </AppBar>
       <Sidebar

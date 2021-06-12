@@ -19,13 +19,14 @@ import {
   Instagram as InstagramIcon,
 } from "@material-ui/icons";
 
-const Footer = () => {
+const Footer = (props) => {
   const classes = useStyles();
   const theme = useTheme();
+  const { width } = props;
   return (
     <footer className="lg-mg-top">
       <div className={classes.footerInner}>
-        <Grid container spacing={10}>
+        <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6}>
             <form>
               <Box display="flex" flexDirection="column">

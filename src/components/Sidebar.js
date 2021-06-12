@@ -13,6 +13,7 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
+  Box,
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -23,26 +24,26 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import NavHeader from "./NavHeader";
 
 const Sidebar = (props) => {
   const { width, open, onClose, anchor, links, selectedItem, theme } = props;
   const classes = useStyles();
   return (
-    <Drawer variant="temporary" open={open} onClose={onClose} anchor={anchor}>
-      <Toolbar className={classes.drawerHeader}>
-        <ListItem
-          style={{
-            height: "100%",
-            justifyContent: anchor === "left" ? "flex-start" : "flex-end",
-          }}
-          disableGutters
-        >
-          <ListItemIcon className={classes.closeIcon}>
-            <IconButton onClick={onClose} aria-label="Close Navigation">
-              <CloseIcon color="primary" />
-            </IconButton>
-          </ListItemIcon>
-        </ListItem>
+    <Drawer
+      variant="temporary"
+      open={open}
+      onClose={onClose}
+      anchor={anchor}
+      classes={{ paper: classes.drawerPaper }}
+    >
+      <Toolbar>
+        <Box display="flex" width="100%" justifyContent="space-between">
+          <NavHeader />
+          <IconButton onClick={onClose} aria-label="Close Navigation">
+            <CloseIcon color="primary" />
+          </IconButton>
+        </Box>
       </Toolbar>
       <List className={classes.drawerList}>
         {links.map((link) => {
@@ -72,9 +73,13 @@ const Sidebar = (props) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  drawerHeader: {
-    width: 200,
-    justifyContent: "flex-end",
+  drawerPaper: {
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "300px",
+    },
   },
   drawerLink: {
     textDecoration: "none",
@@ -82,10 +87,13 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
   },
   drawerLinkText: {
-    fontSize: "1.5rem",
-  },
-  drawerButton: {
-    paddingLeft: "2em",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: theme.typography.h4.fontSize,
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: theme.typography.h6.fontSize,
+    },
+    textAlign: "center",
   },
   drawerList: {
     height: "100%",

@@ -26,6 +26,7 @@ import logo from "../assets/images/logo-192x192.png";
 import { links } from "../utils/constants";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import NavHeader from "./NavHeader";
 
 const Navbar = () => {
   const classes = useStyles();
@@ -43,16 +44,7 @@ const Navbar = () => {
     <>
       <AppBar position="fixed" className={classes.appBar} color="inherit">
         <Toolbar className={classes.toolbar}>
-          <Typography
-            component={Link}
-            to="/"
-            variant="h6"
-            className={classes.title}
-            color="inherit"
-          >
-            <LogoImage src={logo} alt="ecommerce logo" />
-            eCommerce
-          </Typography>
+          <NavHeader />
 
           <Hidden smDown>
             <NavLinks>
@@ -127,11 +119,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  title: {
-    display: "flex",
-    alignItems: "center",
-    textDecoration: "none",
-  },
   navLink: {
     textDecoration: "none",
     margin: "0 1em",
@@ -141,11 +128,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.h6.fontWeight,
   },
 }));
-
-const LogoImage = styled.img`
-  margin-right: 10px;
-  height: 25px;
-`;
 
 const NavLinks = styled.div`
   display: flex;

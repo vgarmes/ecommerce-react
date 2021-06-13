@@ -24,7 +24,7 @@ const Footer = (props) => {
   const theme = useTheme();
   const { width } = props;
   return (
-    <footer className="lg-mg-top">
+    <footer>
       <div className={classes.footerInner}>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6}>

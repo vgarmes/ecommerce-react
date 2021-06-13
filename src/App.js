@@ -10,12 +10,13 @@ import {
   Checkout,
   PrivateRoute,
 } from "./pages";
-import { Navbar, Footer } from "./components";
+import { Navbar, Sidebar, Footer } from "./components";
 
 function App() {
   return (
     <Router>
       <Navbar />
+      <Sidebar />
       <Switch>
         <Route exact path="/">
           <Home />

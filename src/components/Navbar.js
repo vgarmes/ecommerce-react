@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { useProductsContext } from "../context/products_context";
 import {
   AppBar,
   Toolbar,
@@ -29,16 +30,9 @@ import Sidebar from "./Sidebar";
 import NavHeader from "./NavHeader";
 
 const Navbar = () => {
+  const { isSidebarOpen, openSidebar } = useProductsContext();
+  console.log(isSidebarOpen);
   const classes = useStyles();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const handleDrawerOpen = useCallback(() => {
-    setIsDrawerOpen(true);
-  }, [isDrawerOpen]);
-
-  const handleDrawerClose = useCallback(() => {
-    setIsDrawerOpen(false);
-  }, [isDrawerOpen]);
 
   return (
     <>
@@ -90,7 +84,7 @@ const Navbar = () => {
             <Hidden mdUp>
               <IconButton
                 aria-label="Open navigation"
-                onClick={handleDrawerOpen}
+                onClick={openSidebar}
                 color="inherit"
               >
                 <MenuIcon />
@@ -99,12 +93,6 @@ const Navbar = () => {
           </div>
         </Toolbar>
       </AppBar>
-      <Sidebar
-        links={links}
-        anchor="right"
-        open={isDrawerOpen}
-        onClose={handleDrawerClose}
-      />
     </>
   );
 };

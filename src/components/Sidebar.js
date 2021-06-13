@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import { useProductsContext } from "../context/products_context";
 import {
   AppBar,
   Toolbar,
@@ -24,23 +25,26 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { links } from "../utils/constants";
 import NavHeader from "./NavHeader";
 
-const Sidebar = (props) => {
-  const { width, open, onClose, anchor, links, selectedItem, theme } = props;
+const Sidebar = () => {
+  const { isSidebarOpen, closeSidebar } = useProductsContext();
+  console.log(isSidebarOpen);
   const classes = useStyles();
+
   return (
     <Drawer
       variant="temporary"
-      open={open}
-      onClose={onClose}
-      anchor={anchor}
+      open={isSidebarOpen}
+      onClose={closeSidebar}
+      anchor="right"
       classes={{ paper: classes.drawerPaper }}
     >
       <Toolbar>
         <Box display="flex" width="100%" justifyContent="space-between">
           <NavHeader />
-          <IconButton onClick={onClose} aria-label="Close Navigation">
+          <IconButton onClick={closeSidebar} aria-label="Close Navigation">
             <CloseIcon color="primary" />
           </IconButton>
         </Box>
@@ -53,7 +57,7 @@ const Sidebar = (props) => {
               key={id}
               to={url}
               className={classes.drawerLink}
-              onClick={onClose}
+              onClick={closeSidebar}
             >
               <ListItem button className={classes.drawerButton}>
                 <ListItemText

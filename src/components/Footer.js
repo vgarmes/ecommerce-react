@@ -115,17 +115,12 @@ const useStyles = makeStyles((theme) => ({
   },
   socialIcon: {
     color: "#fff",
+    padding: 0,
+    marginRight: "1em",
     "&:hover": {
       color: theme.palette.primary.light,
     },
   },
 }));
-
-const StyledButton = styled(Button)`
-  color: #fff;
-  border-color: #fff;
-  width: 100%;
-  margin-top: 1em;
-`;
 
 export default Footer;

@@ -30,8 +30,7 @@ import Sidebar from "./Sidebar";
 import NavHeader from "./NavHeader";
 
 const Navbar = () => {
-  const { isSidebarOpen, openSidebar } = useProductsContext();
-  console.log(isSidebarOpen);
+  const { openSidebar } = useProductsContext();
   const classes = useStyles();
 
   return (

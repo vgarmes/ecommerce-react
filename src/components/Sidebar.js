@@ -30,7 +30,6 @@ import NavHeader from "./NavHeader";
 
 const Sidebar = () => {
   const { isSidebarOpen, closeSidebar } = useProductsContext();
-  console.log(isSidebarOpen);
   const classes = useStyles();
 
   return (

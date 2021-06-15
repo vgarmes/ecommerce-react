@@ -9,12 +9,24 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        ".lg-mg-top": {
-          marginTop: "50px",
+        ":root": {
+          "--radius": "0.25rem",
+        },
+        ".section": {
+          padding: "3rem 0",
+        },
+        ".section-center": {
+          width: "90vw",
+          margin: "0 auto",
         },
         ".text-white": {
           color: "#fff",
         },
+      },
+    },
+    MuiBreadcrumbs: {
+      root: {
+        marginTop: "1em",
       },
     },
   },

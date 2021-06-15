@@ -10,6 +10,7 @@ import {
   isWidthUp,
   TextField,
   Button,
+  Container,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -24,8 +25,8 @@ const Footer = (props) => {
   const theme = useTheme();
   const { width } = props;
   return (
-    <footer>
-      <div className={classes.footerInner}>
+    <footer className={classes.footerInner}>
+      <Container>
         <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
           <Grid item xs={12} md={6}>
             <form>
@@ -79,7 +80,7 @@ const Footer = (props) => {
             </Typography>
           </Grid>
         </Grid>
-      </div>
+      </Container>
     </footer>
   );
 };

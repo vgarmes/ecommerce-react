@@ -5,9 +5,11 @@ import {
   Box,
   Typography,
   Container,
+  Button,
   withWidth,
   isWidthUp,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import heroImg from "../assets/images/about.jpg";
 
 const Hero = (props) => {
@@ -29,6 +31,16 @@ const Hero = (props) => {
         <Typography variant={isWidthUp("lg", width) ? "h3" : "h6"}>
           The best webshop for sports clothes
         </Typography>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.heroButton}
+          component={Link}
+          to="/products"
+        >
+          see products
+        </Button>
       </Box>
 
       <ImageContainer>
@@ -39,11 +51,8 @@ const Hero = (props) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    fontSize: "1rem",
-    [theme.breakpoints.up("md")]: {
-      fontSize: "1rem",
-    },
+  heroButton: {
+    marginTop: "3em",
   },
 }));
 

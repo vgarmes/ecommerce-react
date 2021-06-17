@@ -11,6 +11,7 @@ import { AddShoppingCart } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import products_reducer from "../reducers/products_reducer";
+import { formatPrice } from "../utils/helpers";
 
 const Product = ({ id, name, description, price, image }) => {
   const classes = useStyles();
@@ -19,13 +20,15 @@ const Product = ({ id, name, description, price, image }) => {
       <Card className={classes.root}>
         <CardMedia className={classes.media} image={image} title={name} />
         <CardContent>
-          <Typography variant="h5" className={classes.productText}>
+          <Typography variant="h6" className={classes.productText}>
             {name}
           </Typography>
           <Typography variant="body2" color="textSecondary" gutterBottom>
             Nike
           </Typography>
-          <Typography variant="h5">{price}</Typography>
+          <Typography variant="body1" className={classes.productPrice}>
+            {formatPrice(price)}
+          </Typography>
         </CardContent>
       </Card>
     </Link>
@@ -50,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
   },
   productText: {
     textTransform: "capitalize",
+  },
+  productPrice: {
+    fontWeight: "bold",
   },
 }));
 

@@ -8,31 +8,27 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import products_reducer from "../reducers/products_reducer";
 
-const Product = ({ name, description, price, image }) => {
+const Product = ({ id, name, description, price, image }) => {
   const classes = useStyles();
   return (
-    <Card className={classes.root}>
-      <CardMedia className={classes.media} image={image} title={name} />
-      <CardContent>
-        <div className={classes.cardContent}>
-          <Typography variant="h5" gutterBottom>
+    <Link to={`/products/${id}`} className="no-decoration">
+      <Card className={classes.root}>
+        <CardMedia className={classes.media} image={image} title={name} />
+        <CardContent>
+          <Typography variant="h5" className={classes.productText}>
             {name}
           </Typography>
+          <Typography variant="body2" color="textSecondary" gutterBottom>
+            Nike
+          </Typography>
           <Typography variant="h5">{price}</Typography>
-        </div>
-        <Typography variant="body2" color="textSecondary">
-          {description}
-        </Typography>
-        <CardActions disableSpacing className={classes.cardActions}>
-          <IconButton aria-label="add to cart">
-            <AddShoppingCart />
-          </IconButton>
-        </CardActions>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 
@@ -51,6 +47,9 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     display: "flex",
     justifyContent: "space-between",
+  },
+  productText: {
+    textTransform: "capitalize",
   },
 }));
 

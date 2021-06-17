@@ -19,6 +19,12 @@ const theme = createMuiTheme({
           width: "90vw",
           margin: "0 auto",
         },
+        ".section-title": {
+          marginTop: "2em",
+        },
+        ".no-decoration": {
+          textDecoration: "none",
+        },
         ".text-white": {
           color: "#fff",
         },

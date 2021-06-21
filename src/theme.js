@@ -1,9 +1,8 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
 // A custom theme for this app
 
 const darkBlack = "rgb(36, 40, 44)";
-const white = "rgb(255,255,255)";
 
 const theme = createMuiTheme({
   overrides: {
@@ -11,6 +10,9 @@ const theme = createMuiTheme({
       "@global": {
         ":root": {
           "--radius": "0.25rem",
+        },
+        a: {
+          textDecoration: "none",
         },
         ".section": {
           padding: "3rem 0",
@@ -24,6 +26,9 @@ const theme = createMuiTheme({
         },
         ".no-decoration": {
           textDecoration: "none",
+        },
+        ".text-capitalize": {
+          textTransform: "capitalize",
         },
         ".text-white": {
           color: "#fff",
@@ -43,4 +48,4 @@ const theme = createMuiTheme({
   },
 });
 
-export default theme;
+export default responsiveFontSizes(theme);

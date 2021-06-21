@@ -3,10 +3,36 @@ import { useParams, useHistory } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { single_product_url as url } from "../utils/constants";
 import { formatPrice } from "../utils/helpers";
-import { Loading, Error, PageBreadcrumbs } from "../components";
+import {
+  Loading,
+  Error,
+  PageBreadcrumbs,
+  ProductImages,
+  Stars,
+  AddToCart,
+} from "../components";
 import { Link } from "react-router-dom";
+import {
+  Container,
+  Button,
+  Grid,
+  Typography,
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const SingleProductPage = () => {
+  const classes = useStyles();
   const { id } = useParams();
   const history = useHistory();
   const {
@@ -18,7 +44,6 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
-    console.log(product);
   }, [id]);
 
   useEffect(() => {
@@ -48,13 +73,99 @@ const SingleProductPage = () => {
     images,
   } = product;
   return (
-    <div>
+    <main>
       <PageBreadcrumbs
         title="Product"
         path={[{ id: "products", name: "Products", url: "/products" }]}
       />
-    </div>
+      <Container component="section">
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={4}>
+            <ProductImages images={images} />
+            Images
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Typography className="text-capitalize" variant="h3">
+              {name}
+            </Typography>
+            <Typography
+              className="text-capitalize"
+              variant="body2"
+              color="textSecondary"
+              gutterBottom
+            >
+              {company}
+            </Typography>
+            <Stars stars={stars} reviews={reviews} />
+            <Typography variant="body1" gutterBottom>
+              {description}
+            </Typography>
+            <TableContainer component={Paper}>
+              <Table aria-label="product specifications">
+                <TableBody>
+                  <TableRow>
+                    <TableCell
+                      className={classes.rowHeader}
+                      component="th"
+                      scope="row"
+                    >
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        className={classes.rowHeaderText}
+                      >
+                        SKU
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">{sku}</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell
+                      className={classes.rowHeader}
+                      component="th"
+                      scope="row"
+                    >
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        className={classes.rowHeaderText}
+                      >
+                        Company
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Typography className="text-capitalize" variant="body2">
+                        {company}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <AddToCart {...product} />
+          </Grid>
+        </Grid>
+      </Container>
+    </main>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  stockInfo: {
+    fontWeight: "bold",
+  },
+  textSuccess: {
+    color: "green",
+  },
+  rowHeader: {
+    backgroundColor: theme.palette.action.hover,
+  },
+  rowHeaderText: {
+    fontWeight: "bold",
+  },
+}));
 
 export default SingleProductPage;

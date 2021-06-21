@@ -32,23 +32,27 @@ const Footer = (props) => {
             <form>
               <Box display="flex" flexDirection="column">
                 <Box mb={1}>
-                  <TextField
-                    variant="outlined"
-                    placeholder="Your e-mail"
-                    inputProps={{ "aria-label": "Get newsletter" }}
-                    InputProps={{
-                      className: classes.whiteBg,
-                    }}
-                    fullWidth
-                    required
-                  />
-                  <Button
-                    className={classes.newsletterBtn}
-                    variant="outlined"
-                    type="submit"
-                  >
-                    Send me the newsletter!
-                  </Button>
+                  <form action="https://formspree.io/f/xayajbar" method="POST">
+                    <TextField
+                      type="email"
+                      name="_replyto"
+                      variant="outlined"
+                      placeholder="Your e-mail"
+                      inputProps={{ "aria-label": "Get newsletter" }}
+                      InputProps={{
+                        className: classes.whiteBg,
+                      }}
+                      fullWidth
+                      required
+                    />
+                    <Button
+                      className={classes.newsletterBtn}
+                      variant="outlined"
+                      type="submit"
+                    >
+                      Send me the newsletter!
+                    </Button>
+                  </form>
                 </Box>
               </Box>
             </form>

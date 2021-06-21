@@ -9,7 +9,10 @@ import Product from "./Product";
 import ProductList from "./ProductList";
 import Error from "./Error";
 import Loading from "./Loading";
-
+import ProductImages from "./ProductImages";
+import Stars from "./Stars";
+import AddToCart from "./AddToCart";
+import AmountButtons from "./AmountButtons";
 export {
   Navbar,
   Footer,
@@ -22,4 +25,8 @@ export {
   ProductList,
   Error,
   Loading,
+  ProductImages,
+  Stars,
+  AddToCart,
+  AmountButtons,
 };

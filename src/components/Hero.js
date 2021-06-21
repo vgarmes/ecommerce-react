@@ -32,15 +32,15 @@ const Hero = (props) => {
           The best webshop for sports clothes
         </Typography>
 
-        <Button
-          variant="contained"
-          color="secondary"
-          className={classes.heroButton}
-          component={Link}
-          to="/products"
-        >
-          see products
-        </Button>
+        <Link to="/products">
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.heroButton}
+          >
+            see products
+          </Button>
+        </Link>
       </Box>
 
       <ImageContainer>

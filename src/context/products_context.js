@@ -12,6 +12,10 @@ import {
 } from "../actions";
 import { products_url as url } from "../utils/constants";
 import axios from "axios";
+import {
+  ContentfulProducts,
+  ContentfulSingleProduct,
+} from "../utils/contentful_formatter";
 
 const initialState = {
   isSidebarOpen: false,
@@ -41,7 +45,7 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
       const response = await axios.get(url);
-      const products = response.data;
+      const products = new ContentfulProducts(response.data).products;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
@@ -52,7 +56,9 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
       const response = await axios.get(url);
-      const singleProduct = response.data;
+      const singleProduct = new ContentfulSingleProduct(response.data).product;
+      console.log(singleProduct);
+
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct });
     } catch (error) {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
@@ -61,6 +67,9 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProducts(url);
+    fetchSingleProduct(
+      "https://cdn.contentful.com/spaces/3qsattafj4mi/entries?access_token=-alFdsEcuR2WGen9W7W2e-LGt6Tr1-OYsDW1lOHH6n8&content_type=variant&fields.product.sys.id=7AuJdk0rRQhuO7uVf9XgXh"
+    );
   }, []);
 
   return (

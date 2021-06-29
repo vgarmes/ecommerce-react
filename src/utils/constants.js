@@ -16,7 +16,6 @@ export const links = [
   },
 ];
 
-export const products_url = "https://course-api.com/react-store-products";
+export const products_url = `https://cdn.contentful.com/spaces/3qsattafj4mi/environments/master/entries?access_token=${process.env.REACT_APP_CONTENTFUL_API_TOKEN}&content_type=product`;
 
-export const single_product_url =
-  "https://course-api.com/react-store-single-product?id=";
+export const single_product_url = `https://cdn.contentful.com/spaces/3qsattafj4mi/environments/master/entries?access_token=${process.env.REACT_APP_CONTENTFUL_API_TOKEN}&content_type=variant&fields.product.sys.id=`;

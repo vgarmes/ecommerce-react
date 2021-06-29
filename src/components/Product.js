@@ -13,18 +13,22 @@ import { makeStyles } from "@material-ui/core/styles";
 import products_reducer from "../reducers/products_reducer";
 import { formatPrice } from "../utils/helpers";
 
-const Product = ({ id, name, description, price, image }) => {
+const Product = ({ id, model, brand, price, variants }) => {
   const classes = useStyles();
   return (
     <Link to={`/products/${id}`} className="no-decoration">
       <Card className={classes.root}>
-        <CardMedia className={classes.media} image={image} title={name} />
+        <CardMedia
+          className={classes.media}
+          image={variants[0].image.file.url}
+          title={model}
+        />
         <CardContent>
           <Typography variant="h6" className={classes.productText}>
-            {name}
+            {model}
           </Typography>
           <Typography variant="body2" color="textSecondary" gutterBottom>
-            Nike
+            {brand}
           </Typography>
           <Typography variant="body1" className={classes.productPrice}>
             {formatPrice(price)}

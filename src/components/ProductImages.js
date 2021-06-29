@@ -12,8 +12,8 @@ const ProductImages = ({ images = [{ url: "" }] }) => {
         <ImageContainer theme={theme}>
           <img
             className="main"
-            src={images[mainIndex].url}
-            alt={images[mainIndex].filename}
+            src={images[mainIndex].file.url}
+            alt={images[mainIndex].title}
           />
         </ImageContainer>
       </Grid>
@@ -23,8 +23,8 @@ const ProductImages = ({ images = [{ url: "" }] }) => {
             <ImageContainer theme={theme}>
               <img
                 className={index === mainIndex ? "gallery active" : "gallery"}
-                src={image.url}
-                alt={image.filename}
+                src={image.file.url}
+                alt={image.title}
               />
             </ImageContainer>
           </Grid>

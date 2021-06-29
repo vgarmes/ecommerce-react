@@ -62,15 +62,15 @@ const SingleProductPage = () => {
   }
 
   const {
-    name,
+    model,
+    brand,
     price,
     description,
     stock,
     stars,
     reviews,
     id: sku,
-    company,
-    images,
+    variants,
   } = product;
   return (
     <main>
@@ -81,12 +81,12 @@ const SingleProductPage = () => {
       <Container component="section">
         <Grid container spacing={4}>
           <Grid item xs={12} md={4}>
-            <ProductImages images={images} />
+            <ProductImages images={variants.map((variant) => variant.image)} />
             Images
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography className="text-capitalize" variant="h3">
-              {name}
+              {model}
             </Typography>
             <Typography
               className="text-capitalize"
@@ -94,7 +94,7 @@ const SingleProductPage = () => {
               color="textSecondary"
               gutterBottom
             >
-              {company}
+              {brand}
             </Typography>
             <Stars stars={stars} reviews={reviews} />
             <Typography variant="body1" gutterBottom>
@@ -135,7 +135,7 @@ const SingleProductPage = () => {
                     </TableCell>
                     <TableCell align="right">
                       <Typography className="text-capitalize" variant="body2">
-                        {company}
+                        {brand}
                       </Typography>
                     </TableCell>
                   </TableRow>

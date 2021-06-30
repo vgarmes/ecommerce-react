@@ -43,6 +43,7 @@ const SingleProductPage = () => {
   } = useProductsContext();
 
   useEffect(() => {
+    console.log("fetching");
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
 
@@ -72,6 +73,7 @@ const SingleProductPage = () => {
     id: sku,
     variants,
   } = product;
+
   return (
     <main>
       <PageBreadcrumbs
@@ -80,11 +82,14 @@ const SingleProductPage = () => {
       />
       <Container component="section">
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <ProductImages images={variants.map((variant) => variant.image)} />
-            Images
+          <Grid item xs={12} md={6}>
+            {variants && (
+              <ProductImages
+                images={variants.map((variant) => variant.image)}
+              />
+            )}
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={6}>
             <Typography className="text-capitalize" variant="h3">
               {model}
             </Typography>

@@ -132,7 +132,9 @@ const SingleProductPage = () => {
                         SKU
                       </Typography>
                     </TableCell>
-                    <TableCell align="right">{sku}</TableCell>
+                    <TableCell align="right">
+                      {variants && variants[variantIndex].id}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell

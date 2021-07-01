@@ -15,6 +15,8 @@ import AddToCart from "./AddToCart";
 import AmountButtons from "./AmountButtons";
 import VariantSelector from "./VariantSelector";
 import SizeSelector from "./SizeSelector";
+import Filters from "./Filters";
+import Sort from "./Sort";
 export {
   Navbar,
   Footer,
@@ -33,4 +35,6 @@ export {
   AmountButtons,
   VariantSelector,
   SizeSelector,
+  Filters,
+  Sort,
 };

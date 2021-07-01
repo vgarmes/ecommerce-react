@@ -31,13 +31,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import CheckIcon from "@material-ui/icons/Check";
 
-const Addtocart = ({
-  id,
-  price,
-  variants = null,
-  variantIndex,
-  setVariantIndex,
-}) => {
+const Addtocart = ({ id, price, variants, variantIndex, setVariantIndex }) => {
   const classes = useStyles();
   const [amount, setAmount] = useState(1);
   const [stock, setStock] = useState(1);

@@ -10,6 +10,8 @@ import {
   ProductImages,
   Stars,
   AmountButtons,
+  VariantSelector,
+  SizeSelector,
 } from "../components";
 import { Link } from "react-router-dom";
 import {
@@ -21,16 +23,24 @@ import {
   Card,
   CardActions,
   CardContent,
+  FormControl,
+  InputLabel,
+  Select,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import CheckIcon from "@material-ui/icons/Check";
 
-const Addtocart = ({ id, price, stock, colors = [] }) => {
+const Addtocart = ({
+  id,
+  price,
+  variants = null,
+  variantIndex,
+  setVariantIndex,
+}) => {
   const classes = useStyles();
-
-  const [mainColor, setMainColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const [stock, setStock] = useState(1);
 
   const increase = () => {
     setAmount((oldAmount) => {
@@ -60,44 +70,36 @@ const Addtocart = ({ id, price, stock, colors = [] }) => {
           {stock > 0 ? (
             <span className={classes.textSuccess}>In Stock</span>
           ) : (
-            <span variant="body1" color="error">
+            <span variant="body1" className={classes.textError}>
               Out of stock
             </span>
           )}
         </Typography>
       </CardContent>
-      <CardActions className={classes.cardActionsColumn} disableSpacing>
-        <Box
-          display="flex"
-          justifyContent="flex-start"
-          width="100%"
-          marginBottom="1em"
-        >
-          <Typography variant="body1">Colors:</Typography>
-          {colors.map((color, index) => {
-            return (
-              <ColorButton
-                key={index}
-                color={color}
-                isActive={mainColor === color}
-                onClick={() => setMainColor(color)}
-              >
-                {mainColor === color ? <CheckIcon /> : null}
-              </ColorButton>
-            );
-          })}
-        </Box>
-        <AmountButtons
-          amount={amount}
-          increase={increase}
-          decrease={decrease}
-        />
-        {stock > 0 && (
-          <Button variant="contained" color="primary" fullWidth>
-            Add to cart
-          </Button>
-        )}
-      </CardActions>
+
+      {variants && (
+        <CardActions className={classes.cardActionsColumn} disableSpacing>
+          <Box alignSelf="flex-start">
+            <Typography variant="body1" gutterBottom>
+              {variants && variants[variantIndex].color}
+            </Typography>
+          </Box>
+
+          <VariantSelector
+            variants={variants}
+            variantIndex={variantIndex}
+            setVariantIndex={setVariantIndex}
+          />
+
+          <SizeSelector variant={variants[variantIndex]} setStock={setStock} />
+
+          {stock > 0 && (
+            <Button variant="contained" color="primary" fullWidth>
+              Add to cart
+            </Button>
+          )}
+        </CardActions>
+      )}
     </Card>
   );
 };
@@ -108,6 +110,9 @@ const useStyles = makeStyles((theme) => ({
   },
   textSuccess: {
     color: "green",
+  },
+  textError: {
+    color: "red",
   },
   rowHeader: {
     backgroundColor: theme.palette.action.hover,

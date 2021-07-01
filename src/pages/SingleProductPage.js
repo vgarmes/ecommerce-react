@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { single_product_url as url } from "../utils/constants";
@@ -30,6 +30,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 
 const SingleProductPage = () => {
   const classes = useStyles();
@@ -41,9 +42,9 @@ const SingleProductPage = () => {
     single_product: product,
     fetchSingleProduct,
   } = useProductsContext();
+  const [variantIndex, setVariantIndex] = useState(0);
 
   useEffect(() => {
-    console.log("fetching");
     fetchSingleProduct(`${url}${id}`);
   }, [id]);
 
@@ -84,8 +85,9 @@ const SingleProductPage = () => {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             {variants && (
-              <ProductImages
-                images={variants.map((variant) => variant.image)}
+              <MainProductImage
+                src={variants[variantIndex].image.file.url}
+                alt={variants[variantIndex].image.title}
               />
             )}
           </Grid>
@@ -105,6 +107,14 @@ const SingleProductPage = () => {
             <Typography variant="body1" gutterBottom>
               {description}
             </Typography>
+            <AddToCart
+              {...product}
+              variantIndex={variantIndex}
+              setVariantIndex={setVariantIndex}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
             <TableContainer component={Paper}>
               <Table aria-label="product specifications">
                 <TableBody>
@@ -148,10 +158,6 @@ const SingleProductPage = () => {
               </Table>
             </TableContainer>
           </Grid>
-
-          <Grid item xs={12} md={4}>
-            <AddToCart {...product} />
-          </Grid>
         </Grid>
       </Container>
     </main>
@@ -172,5 +178,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
   },
 }));
+
+const MainProductImage = styled.img`
+  width: 100%;
+  height: 400px;
+  display: block;
+  border-radius: var(--radius);
+  object-fit: cover;
+`;
 
 export default SingleProductPage;

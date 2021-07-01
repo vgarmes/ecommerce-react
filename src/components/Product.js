@@ -6,10 +6,12 @@ import {
   CardActions,
   Typography,
   IconButton,
+  Box,
 } from "@material-ui/core";
 import { AddShoppingCart } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 import products_reducer from "../reducers/products_reducer";
 import { formatPrice } from "../utils/helpers";
 
@@ -33,6 +35,11 @@ const Product = ({ id, model, brand, price, variants }) => {
           <Typography variant="body1" className={classes.productPrice}>
             {formatPrice(price)}
           </Typography>
+          <Box display="flex" justifyContent="flex-end">
+            {variants.map(({ id, hex }) => (
+              <ColorButton key={id} color={hex} />
+            ))}
+          </Box>
         </CardContent>
       </Card>
     </Link>
@@ -63,4 +70,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ColorButton = styled.button`
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  background: ${(props) => (props.color ? props.color : "#222")};
+  margin-left: 0.5rem;
+  border: ${(props) => (props.color === "#FFFFFF" ? "1px solid #222" : "none")};
+  cursor: pointer;
+  opacity: ${(props) => (props.isActive ? "1" : "0.5")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  svg {
+    color: #fff;
+  }
+`;
 export default Product;

@@ -13,6 +13,8 @@ import ProductImages from "./ProductImages";
 import Stars from "./Stars";
 import AddToCart from "./AddToCart";
 import AmountButtons from "./AmountButtons";
+import VariantSelector from "./VariantSelector";
+import SizeSelector from "./SizeSelector";
 export {
   Navbar,
   Footer,
@@ -29,4 +31,6 @@ export {
   Stars,
   AddToCart,
   AmountButtons,
+  VariantSelector,
+  SizeSelector,
 };

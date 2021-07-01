@@ -81,7 +81,7 @@ const SingleProductPage = () => {
         title="Product"
         path={[{ id: "products", name: "Products", url: "/products" }]}
       />
-      <Container component="section">
+      <Container component="section" className={classes.gridContainer}>
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             {variants && (
@@ -167,6 +167,9 @@ const SingleProductPage = () => {
 };
 
 const useStyles = makeStyles((theme) => ({
+  gridContainer: {
+    marginTop: theme.spacing(4),
+  },
   stockInfo: {
     fontWeight: "bold",
   },

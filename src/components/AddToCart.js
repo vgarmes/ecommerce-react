@@ -128,21 +128,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ColorButton = styled.button`
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: ${(props) => (props.color ? props.color : "#222")};
-  margin-left: 0.5rem;
-  border: none;
-  cursor: pointer;
-  opacity: ${(props) => (props.isActive ? "1" : "0.5")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  svg {
-    color: #fff;
-  }
-`;
 export default Addtocart;

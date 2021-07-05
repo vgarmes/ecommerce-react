@@ -15,11 +15,11 @@ const ProductsPage = () => {
       <PageBreadcrumbs title="Products" />
       <Container>
         <Grid container spacing={4}>
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={3}>
             <Filters />
           </Grid>
 
-          <Grid item xs={9}>
+          <Grid item xs={12} sm={9}>
             <Sort />
             <ProductList />
           </Grid>

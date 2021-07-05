@@ -8,6 +8,7 @@ import {
   InputBase,
   IconButton,
   Typography,
+  Button,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -24,7 +25,7 @@ const Filters = () => {
   const brands = getUniqueValues(all_products, "brand");
   const colors = getUniqueValues(
     all_products.map((product) => product.variants).flat(),
-    "color"
+    "hex"
   );
 
   return (
@@ -56,8 +57,21 @@ const Filters = () => {
           >
             Category
           </Typography>
-          {}
+          {categories.map((cat, index) => (
+            <Button
+              key={index}
+              size="small"
+              className={`${classes.categoryBtn} ${
+                cat === category ? classes.active : null
+              }`}
+              isActive={cat === category}
+              fullWidth
+            >
+              {cat}
+            </Button>
+          ))}
         </Box>
+        <Box className="form-control"></Box>
       </Paper>
     </div>
   );
@@ -85,6 +99,13 @@ const useStyles = makeStyles((theme) => ({
   },
   categoryTitle: {
     fontWeight: "bold",
+  },
+  categoryBtn: {
+    display: "block",
+    textAlign: "left",
+  },
+  active: {
+    backgroundColor: theme.palette.action.selected,
   },
 }));
 

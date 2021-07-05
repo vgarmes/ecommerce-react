@@ -34,7 +34,7 @@ const FeaturedProducts = () => {
         <Grid container spacing={4}>
           {featured.map((product) => (
             <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-              <Product key={product.id} {...product} />
+              <Product {...product} />
             </Grid>
           ))}
         </Grid>

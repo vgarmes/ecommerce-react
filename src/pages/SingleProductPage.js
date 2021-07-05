@@ -34,7 +34,7 @@ import styled from "styled-components";
 
 const SingleProductPage = () => {
   const classes = useStyles();
-  const { id } = useParams();
+  const { id, variant_id } = useParams();
   const history = useHistory();
   const {
     single_product_loading: loading,

@@ -22,7 +22,7 @@ const GridView = ({ products }) => {
           md={4}
           lg={3}
         >
-          <Product {...product} />;
+          <Product {...product} />
         </Grid>
       ))}
     </Grid>

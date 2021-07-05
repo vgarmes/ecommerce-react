@@ -24,6 +24,8 @@ const Sort = () => {
     grid_view,
     setGridView,
     setListView,
+    sort,
+    updateSort,
   } = useFilterContext();
 
   const [age, setAge] = React.useState("");
@@ -53,7 +55,7 @@ const Sort = () => {
       <Divider className={classes.divider} />
       <Form>
         <label htmlFor="sort">Sort by</label>
-        <select name="sort" id="sort" value={"price-lowest"}>
+        <select name="sort" id="sort" value={sort} onChange={updateSort}>
           <option value="price-lowest">price (lowest)</option>
           <option value="price-highest">price (highest)</option>
           <option value="name-a">name (a-z)</option>

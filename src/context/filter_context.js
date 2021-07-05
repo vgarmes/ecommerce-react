@@ -57,8 +57,14 @@ export const FilterProvider = ({ children }) => {
   };
 
   const updateFilters = (e) => {
-    let name = e.target.name;
+    // currentTarget is used so we get the name of the element that the event listener is attached to,
+    // and not the element that triggered the event (clicked on)
+    let name = e.currentTarget.name;
     let value = e.target.value;
+    if (name === "category") {
+      value = e.target.textContent;
+    }
+    console.log(name, value);
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
 

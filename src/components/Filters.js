@@ -65,11 +65,13 @@ const Filters = () => {
           {categories.map((cat, index) => (
             <Button
               key={index}
+              name="category"
               size="small"
               className={`${classes.categoryBtn} ${
                 cat === category ? classes.active : null
               }`}
               isActive={cat === category}
+              onClick={updateFilters}
               fullWidth
             >
               {cat}

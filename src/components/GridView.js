@@ -6,22 +6,33 @@ import { makeStyles } from "@material-ui/core/styles";
 const GridView = ({ products }) => {
   const classes = useStyles();
   return (
-    <section>
-      <Grid container spacing={4}>
-        {products.map((product) => (
-          <Grid item key={product.id} xs={12} sm={6} md={4}>
-            <Product key={product.id} {...product} />;
-          </Grid>
-        ))}
-      </Grid>
-    </section>
+    <Grid
+      container
+      component="section"
+      className={classes.gridContainer}
+      spacing={4}
+    >
+      {products.map((product) => (
+        <Grid
+          item
+          key={product.id}
+          component="article"
+          xs={12}
+          sm={6}
+          md={4}
+          lg={3}
+        >
+          <Product {...product} />;
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
   root: {},
-  content: {
-    padding: theme.spacing(4),
+  gridContainer: {
+    paddingTop: theme.spacing(4),
   },
 }));
 

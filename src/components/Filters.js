@@ -1,6 +1,6 @@
 import React from "react";
 import { useFilterContext } from "../context/filter_context";
-import { formatPrice } from "../utils/helpers";
+import { getUniqueValues, formatPrice } from "../utils/helpers";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Paper,
@@ -19,6 +19,14 @@ const Filters = () => {
     clearFilters,
     all_products,
   } = useFilterContext();
+
+  const categories = getUniqueValues(all_products, "category");
+  const brands = getUniqueValues(all_products, "brand");
+  const colors = getUniqueValues(
+    all_products.map((product) => product.variants).flat(),
+    "color"
+  );
+
   return (
     <div>
       <Paper component="form" className={classes.root}>

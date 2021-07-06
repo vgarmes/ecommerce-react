@@ -61,10 +61,14 @@ export const FilterProvider = ({ children }) => {
     // and not the element that triggered the event (clicked on)
     let name = e.currentTarget.name;
     let value = e.target.value;
+
     if (name === "category") {
       value = e.target.textContent;
     }
-    console.log(name, value);
+    if (name === "color") {
+      value = e.target.dataset.color;
+    }
+
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
   };
 

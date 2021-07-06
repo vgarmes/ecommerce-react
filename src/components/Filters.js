@@ -1,7 +1,7 @@
 import React from "react";
 import { useFilterContext } from "../context/filter_context";
 import { getUniqueValues, formatPrice } from "../utils/helpers";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Paper,
   Box,
@@ -33,9 +33,22 @@ const Filters = () => {
     "hex"
   );
 
+  const handleSlider = (name, value) => {
+    const e = {
+      currentTarget: { name: name },
+      target: { value: value },
+    };
+
+    updateFilters(e);
+  };
+
   return (
     <div>
-      <Paper component="form" className={classes.root}>
+      <Paper
+        component="form"
+        onSubmit={(e) => e.preventDefault()}
+        className={classes.root}
+      >
         <Box display="flex" alignItems="center" className={classes.formControl}>
           <InputBase
             className={classes.searchInput}
@@ -68,9 +81,8 @@ const Filters = () => {
               name="category"
               size="small"
               className={`${classes.categoryBtn} ${
-                cat === category ? classes.active : null
+                cat === category ? "active" : null
               }`}
-              isActive={cat === category}
               onClick={updateFilters}
               fullWidth
             >
@@ -94,6 +106,7 @@ const Filters = () => {
               id: "brand",
             }}
             className={classes.selectInput}
+            onChange={updateFilters}
           >
             {brands.map((singleBrand, index) => (
               <option key={index} value={singleBrand}>
@@ -110,14 +123,36 @@ const Filters = () => {
           >
             Colors
           </Typography>
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" flexWrap="wrap">
             {colors.map((c, index) => {
               if (c === "all") {
-                return <Button key={index}>All</Button>;
+                return (
+                  <Button
+                    key={index}
+                    className={`${classes.allColorsBtn} ${
+                      c === color ? "active" : null
+                    }`}
+                    name="color"
+                    data-color={c}
+                    hexColor={c}
+                    onClick={updateFilters}
+                  >
+                    All
+                  </Button>
+                );
               }
               return (
-                <ColorButton key={index} color={c}>
-                  {c === color ? <CheckIcon /> : null}
+                <ColorButton
+                  key={index}
+                  name="color"
+                  data-color={c}
+                  hexColor={c}
+                  isActive={c === color}
+                  onClick={updateFilters}
+                >
+                  {c === color ? (
+                    <CheckIcon style={{ fontSize: "0.75rem" }} />
+                  ) : null}
                 </ColorButton>
               );
             })}
@@ -129,14 +164,18 @@ const Filters = () => {
             className={classes.categoryTitle}
             gutterBottom
           >
-            Price range
+            Price
           </Typography>
-          <Slider
-            value={[min_price, max_price]}
-            onChange={console.log("slider")}
+          <Typography variant="body2">{formatPrice(price)}</Typography>
+          <CustomSlider
             valueLabelDisplay="auto"
-            aria-labelledby="range-slider"
-            getAriaValueText={formatPrice}
+            aria-label="price slider"
+            min={min_price}
+            max={max_price}
+            value={price}
+            valueLabelDisplay="off"
+            name="price"
+            onChange={(e, value) => handleSlider("price", value)}
           />
         </Box>
         <Button variant="contained" color="primary">
@@ -173,12 +212,19 @@ const useStyles = makeStyles((theme) => ({
   categoryBtn: {
     display: "block",
     textAlign: "left",
-  },
-  active: {
-    backgroundColor: theme.palette.action.selected,
+    "&.active": {
+      backgroundColor: theme.palette.action.selected,
+    },
   },
   selectInput: {
     width: "100%",
+  },
+  allColorsBtn: {
+    minWidth: 0,
+    padding: "2px",
+    "&.active": {
+      backgroundColor: theme.palette.action.selected,
+    },
   },
 }));
 
@@ -186,17 +232,51 @@ const ColorButton = styled.button`
   height: 1rem;
   width: 1rem;
   border-radius: 50%;
-  background: ${(props) => (props.color ? props.color : "#222")};
+  background: ${(props) => (props.hexColor ? props.hexColor : "#222")};
   margin-left: 0.5rem;
-  border: ${(props) => (props.color === "#FFFFFF" ? "1px solid #222" : "none")};
+  border: ${(props) =>
+    props.hexColor === "#FFFFFF" ? "1px solid #222" : "none"};
   cursor: pointer;
   opacity: ${(props) => (props.isActive ? "1" : "0.5")};
   display: flex;
   align-items: center;
   justify-content: center;
   svg {
-    color: #fff;
+    color: ${(props) => (props.hexColor === "#FFFFFF" ? "#000000" : "#FFFFFF")};
+  }
+  active {
+    opacity: 1;
   }
 `;
+
+const CustomSlider = withStyles((theme) => ({
+  root: {
+    color: theme.palette.primary,
+    height: 8,
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: "#fff",
+    border: "2px solid currentColor",
+    marginTop: -8,
+    marginLeft: -12,
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit",
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: "calc(-50% + 4px)",
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+}))(Slider);
 
 export default Filters;

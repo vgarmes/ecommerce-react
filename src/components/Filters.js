@@ -178,7 +178,7 @@ const Filters = () => {
             onChange={(e, value) => handleSlider("price", value)}
           />
         </Box>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={clearFilters}>
           clear filters
         </Button>
       </Paper>

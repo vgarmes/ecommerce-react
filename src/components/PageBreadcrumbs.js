@@ -5,7 +5,7 @@ import { NavbarGap } from "../components";
 
 const PageBreadcrumbs = ({ title, path = [] }) => {
   return (
-    <Container>
+    <>
       <NavbarGap />
       <Breadcrumbs aria-label="breadcrumb">
         <Link key="home" component={RouterLink} to="/" color="inherit">
@@ -21,7 +21,7 @@ const PageBreadcrumbs = ({ title, path = [] }) => {
         })}
         <Typography color="textPrimary">{title}</Typography>
       </Breadcrumbs>
-    </Container>
+    </>
   );
 };
 

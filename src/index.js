@@ -5,16 +5,19 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { StylesProvider, ThemeProvider } from "@material-ui/core/styles";
 import { ProductsProvider } from "./context/products_context";
 import { FilterProvider } from "./context/filter_context";
+import { CartProvider } from "./context/cart_context";
 import theme from "./theme";
 import "./index.css";
 
 ReactDOM.render(
   <ProductsProvider>
     <FilterProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
+      <CartProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </CartProvider>
     </FilterProvider>
   </ProductsProvider>,
   document.getElementById("root")

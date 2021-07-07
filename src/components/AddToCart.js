@@ -17,26 +17,8 @@ const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
   const { addToCart } = useCartContext();
   const { id, price, variants } = product;
   const classes = useStyles();
-  const [amount, setAmount] = useState(1);
-  const [stock, setStock] = useState(1);
-
-  const increase = () => {
-    setAmount((oldAmount) => {
-      if (oldAmount + 1 > stock) {
-        return stock;
-      }
-      return oldAmount + 1;
-    });
-  };
-
-  const decrease = () => {
-    setAmount((oldAmount) => {
-      if (oldAmount - 1 < 1) {
-        return 1;
-      }
-      return oldAmount - 1;
-    });
-  };
+  const [sizeStock, setSizeStock] = useState("");
+  const [size, setSize] = useState("");
 
   return (
     <Card className={classes.cardProduct}>
@@ -45,7 +27,7 @@ const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
           {formatPrice(price)}
         </Typography>
         <Typography variant="body1" className={classes.stockInfo}>
-          {stock > 0 ? (
+          {sizeStock > 0 ? (
             <span className={classes.textSuccess}>In Stock</span>
           ) : (
             <span variant="body1" className={classes.textError}>
@@ -69,15 +51,22 @@ const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
             setVariantIndex={setVariantIndex}
           />
 
-          <SizeSelector variant={variants[variantIndex]} setStock={setStock} />
+          <SizeSelector
+            variant={variants[variantIndex]}
+            size={size}
+            setSize={setSize}
+            setSizeStock={setSizeStock}
+          />
 
-          {stock > 0 && (
+          {sizeStock > 0 && (
             <Button
               component={Link}
               to="/cart"
               variant="contained"
               color="primary"
-              onClick={() => addToCart(id, product, variantIndex)}
+              onClick={() =>
+                addToCart(id, product, variants[variantIndex], size)
+              }
               fullWidth
             >
               Add to cart

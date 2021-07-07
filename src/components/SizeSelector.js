@@ -14,22 +14,22 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const SizeSelector = ({ variant = {}, setStock }) => {
+const SizeSelector = ({ variant = {}, size, setSize, setSizeStock }) => {
   const classes = useStyles();
   const sizes = Object.keys(variant.stock);
   const stock = Object.values(variant.stock);
 
-  const [state, setState] = React.useState("");
-
-  const handleChange = (event) => {
-    setState(event.target.value);
+  const handleChange = (e) => {
+    setSize(e.target.value);
+    setSizeStock(variant.stock[e.target.value]);
   };
+
   return (
     <FormControl variant="outlined" className={classes.formControl}>
       <InputLabel htmlFor="outlined-size-native-simple">Size</InputLabel>
       <Select
         native
-        value={state}
+        value={size}
         onChange={handleChange}
         label="Size"
         inputProps={{
@@ -39,17 +39,17 @@ const SizeSelector = ({ variant = {}, setStock }) => {
         className={classes.formSelect}
       >
         <option key="-1" aria-label="None" value="" />
-        {sizes.map((size, index) => {
+        {sizes.map((singleSize, index) => {
           if (stock[index] > 0) {
             return (
-              <option key={index} value={size}>
-                {size}
+              <option key={index} value={singleSize}>
+                {singleSize}
               </option>
             );
           } else {
             return (
-              <option key={index} value={size} disabled>
-                {size}
+              <option key={index} value={singleSize} disabled>
+                {singleSize}
               </option>
             );
           }

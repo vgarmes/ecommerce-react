@@ -17,6 +17,7 @@ import VariantSelector from "./VariantSelector";
 import SizeSelector from "./SizeSelector";
 import Filters from "./Filters";
 import Sort from "./Sort";
+import CartContent from "./CartContent";
 export {
   Navbar,
   Footer,
@@ -37,4 +38,5 @@ export {
   SizeSelector,
   Filters,
   Sort,
+  CartContent,
 };

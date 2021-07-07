@@ -34,7 +34,12 @@ const Sort = () => {
     setAge(event.target.value);
   };
   return (
-    <Box display="flex" justifyContent="space-between" alignItems="center">
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      className={classes.root}
+    >
       <ButtonGroup color="text.secondary" aria-label="products view">
         <Button
           className={`${classes.button} ${grid_view ? classes.active : null}`}
@@ -49,32 +54,51 @@ const Sort = () => {
           <ListIcon />
         </Button>
       </ButtonGroup>
-      <Typography variant="body1" className={classes.productsAmount}>
-        {products.length} products found
-      </Typography>
-      <Divider className={classes.divider} />
-      <Form>
-        <label htmlFor="sort">Sort by</label>
-        <select name="sort" id="sort" value={sort} onChange={updateSort}>
-          <option value="price-lowest">price (lowest)</option>
-          <option value="price-highest">price (highest)</option>
-          <option value="name-a">name (a-z)</option>
-          <option value="name-z">name (z-a)</option>
-        </select>
-      </Form>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        flexGrow="1"
+        className={classes.textContent}
+      >
+        <Typography variant="body1">
+          {products.length} products found
+        </Typography>
+        <Divider className={classes.divider} />
+        <Form>
+          <label htmlFor="sort">Sort by</label>
+          <select name="sort" id="sort" value={sort} onChange={updateSort}>
+            <option value="price-lowest">price (lowest)</option>
+            <option value="price-highest">price (highest)</option>
+            <option value="name-a">name (a-z)</option>
+            <option value="name-z">name (z-a)</option>
+          </select>
+        </Form>
+      </Box>
     </Box>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: "column-reverse",
+      alignItems: "stretch",
+    },
+  },
   button: {
     padding: theme.spacing(0),
   },
   active: {
     backgroundColor: theme.palette.action.selected,
   },
-  productsAmount: {
+  textContent: {
+    textAlign: "center",
     marginLeft: theme.spacing(2),
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: 0,
+      marginBottom: theme.spacing(2),
+    },
   },
   divider: {
     flexGrow: 1,

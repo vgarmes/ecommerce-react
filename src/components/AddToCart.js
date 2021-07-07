@@ -1,37 +1,21 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
-import { useProductsContext } from "../context/products_context";
-import { single_product_url as url } from "../utils/constants";
 import { formatPrice } from "../utils/helpers";
-import {
-  Loading,
-  Error,
-  PageBreadcrumbs,
-  ProductImages,
-  Stars,
-  AmountButtons,
-  VariantSelector,
-  SizeSelector,
-} from "../components";
+import { VariantSelector, SizeSelector } from "../components";
 import { Link } from "react-router-dom";
 import {
-  Container,
   Button,
-  Grid,
   Typography,
   Box,
   Card,
   CardActions,
   CardContent,
-  FormControl,
-  InputLabel,
-  Select,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import styled from "styled-components";
-import CheckIcon from "@material-ui/icons/Check";
+import { useCartContext } from "../context/cart_context";
 
-const Addtocart = ({ id, price, variants, variantIndex, setVariantIndex }) => {
+const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
+  const { addToCart } = useCartContext();
+  const { id, price, variants } = product;
   const classes = useStyles();
   const [amount, setAmount] = useState(1);
   const [stock, setStock] = useState(1);
@@ -88,7 +72,14 @@ const Addtocart = ({ id, price, variants, variantIndex, setVariantIndex }) => {
           <SizeSelector variant={variants[variantIndex]} setStock={setStock} />
 
           {stock > 0 && (
-            <Button variant="contained" color="primary" fullWidth>
+            <Button
+              component={Link}
+              to="/cart"
+              variant="contained"
+              color="primary"
+              onClick={() => addToCart(id, product, variantIndex)}
+              fullWidth
+            >
               Add to cart
             </Button>
           )}

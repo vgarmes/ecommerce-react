@@ -108,7 +108,7 @@ const SingleProductPage = () => {
               {description}
             </Typography>
             <AddToCart
-              {...product}
+              product={product}
               variantIndex={variantIndex}
               setVariantIndex={setVariantIndex}
             />

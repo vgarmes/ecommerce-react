@@ -19,7 +19,7 @@ import AmountButtons from "./AmountButtons";
 import { formatPrice } from "../utils/helpers";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const CartItem = ({ id, model, image, price, color, amount }) => {
+const CartItem = ({ id, model, image, price, color, size, amount }) => {
   const { removeItem, toggleAmount } = useCartContext();
   const classes = useStyles();
 
@@ -29,11 +29,17 @@ const CartItem = ({ id, model, image, price, color, amount }) => {
   return (
     <TableRow key={id}>
       <TableCell>
-        <Box display="flex">
+        <Box display="flex" alignItems="center">
           <Image src={image} alt={model} />
           <Box ml={2}>
             <Typography variant="body1">{model}</Typography>
-            <Typography variant="overline">{color}</Typography>
+            <Typography variant="body2" style={{ textTransform: "uppercase" }}>
+              {color}
+            </Typography>
+            <Typography variant="body2" style={{ textTransform: "uppercase" }}>
+              Size: {size}
+            </Typography>
+
             <Hidden smUp>
               <Typography variant="body2">{formatPrice(price)}</Typography>
             </Hidden>
@@ -41,9 +47,11 @@ const CartItem = ({ id, model, image, price, color, amount }) => {
         </Box>
       </TableCell>
       <Hidden xsDown>
-        <TableCell align="center">{formatPrice(price)}</TableCell>
+        <TableCell align="center">
+          <Typography variant="body1">{formatPrice(price)}</Typography>
+        </TableCell>
       </Hidden>
-      <TableCell align="center" className={classes.amountCell}>
+      <TableCell align="center">
         <AmountButtons
           amount={amount}
           increase={increase}
@@ -51,7 +59,9 @@ const CartItem = ({ id, model, image, price, color, amount }) => {
         />
       </TableCell>
       <Hidden xsDown>
-        <TableCell align="center">{formatPrice(price * amount)}</TableCell>
+        <TableCell align="center">
+          <Typography variant="body1">{formatPrice(price * amount)}</Typography>
+        </TableCell>
       </Hidden>
       <TableCell align="center">
         <IconButton
@@ -74,10 +84,6 @@ const Image = withTheme(styled.img`
   border-radius: ${(props) => props.theme.shape.borderRadius}px;
 `);
 
-const useStyles = makeStyles((theme) => ({
-  modelCell: {
-    display: "flex",
-  },
-}));
+const useStyles = makeStyles((theme) => ({}));
 
 export default CartItem;

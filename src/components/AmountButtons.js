@@ -1,39 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import { Typography } from "@material-ui/core";
+import {
+  Box,
+  ButtonGroup,
+  IconButton,
+  Button,
+  Typography,
+  useMediaQuery,
+} from "@material-ui/core";
 import { Add as AddIcon, Remove as RemoveIcon } from "@material-ui/icons";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { AddCircleOutline, RemoveCircleOutline } from "@material-ui/icons";
 
 const AmountButtons = ({ amount, increase, decrease }) => {
+  const classes = useStyles();
+  const theme = useTheme();
   return (
-    <Wrapper>
-      <button type="button" className="amount-btn" onClick={decrease}>
-        <RemoveIcon />
-      </button>
-      <Typography variant="h4">{amount}</Typography>
-      <button type="button" className="amount-btn" onClick={increase}>
-        <AddIcon />
-      </button>
-    </Wrapper>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      m="auto"
+      maxWidth={75}
+      flexDirection={
+        useMediaQuery(theme.breakpoints.up(400)) ? "row" : "column-reverse"
+      }
+    >
+      <IconButton aria-label="increase" size="small" onClick={increase}>
+        <RemoveCircleOutline fontSize="small" color="primary" />
+      </IconButton>
+      <Typography variant="h6">{amount}</Typography>
+      <IconButton aria-label="decrease" size="small" onClick={decrease}>
+        <AddCircleOutline fontSize="small" color="primary" />
+      </IconButton>
+    </Box>
   );
 };
-
-const Wrapper = styled.div`
-  display: grid;
-  width: 140px;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  button {
-    background: transparent;
-    border-color: transparent;
-    cursor: pointer;
-    padding: 1rem 0;
-    width: 2rem;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
+const useStyles = makeStyles((theme) => ({}));
 
 export default AmountButtons;

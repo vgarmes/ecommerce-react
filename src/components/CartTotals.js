@@ -29,7 +29,9 @@ const CartTotals = () => {
 
           <Divider className={classes.divider} />
           <Typography variant="h5">Total:</Typography>
-          <Typography variant="h5">{formatPrice(total_amount)}</Typography>
+          <Typography variant="h5">
+            {formatPrice(total_amount + shipping_fee)}
+          </Typography>
         </CardContent>
         <CardActions>
           <Button

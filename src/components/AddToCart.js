@@ -64,9 +64,7 @@ const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
               to="/cart"
               variant="contained"
               color="primary"
-              onClick={() =>
-                addToCart(id, product, variants[variantIndex], size)
-              }
+              onClick={() => addToCart(product, variants[variantIndex], size)}
               fullWidth
             >
               Add to cart

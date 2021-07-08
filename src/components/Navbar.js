@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useProductsContext } from "../context/products_context";
+import { useCartContext } from "../context/cart_context";
 import {
   AppBar,
   Toolbar,
@@ -31,6 +32,7 @@ import NavHeader from "./NavHeader";
 
 const Navbar = () => {
   const { openSidebar } = useProductsContext();
+  const { total_items } = useCartContext();
   const classes = useStyles();
 
   return (
@@ -66,7 +68,7 @@ const Navbar = () => {
               aria-label="Show cart items"
               color="inherit"
             >
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={total_items} color="secondary">
                 <ShoppingCart />
               </Badge>
             </IconButton>

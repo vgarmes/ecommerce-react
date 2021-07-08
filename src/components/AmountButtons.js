@@ -26,11 +26,11 @@ const AmountButtons = ({ amount, increase, decrease }) => {
         useMediaQuery(theme.breakpoints.up(400)) ? "row" : "column-reverse"
       }
     >
-      <IconButton aria-label="increase" size="small" onClick={increase}>
+      <IconButton aria-label="decrease amount" size="small" onClick={decrease}>
         <RemoveCircleOutline fontSize="small" color="primary" />
       </IconButton>
       <Typography variant="h6">{amount}</Typography>
-      <IconButton aria-label="decrease" size="small" onClick={decrease}>
+      <IconButton aria-label="increase amount" size="small" onClick={increase}>
         <AddCircleOutline fontSize="small" color="primary" />
       </IconButton>
     </Box>

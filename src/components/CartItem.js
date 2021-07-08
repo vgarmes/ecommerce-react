@@ -66,16 +66,17 @@ const CartItem = ({ id, model, image, price, color, size, amount }) => {
         <TableCell align="center">
           <Typography variant="body1">{formatPrice(price * amount)}</Typography>
         </TableCell>
+
+        <TableCell align="center">
+          <IconButton
+            aria-label="remove item"
+            size="small"
+            onClick={() => removeItem(id)}
+          >
+            <DeleteIcon color="secondary" />
+          </IconButton>
+        </TableCell>
       </Hidden>
-      <TableCell align="center">
-        <IconButton
-          aria-label="remove item"
-          size="small"
-          onClick={() => removeItem(id)}
-        >
-          <DeleteIcon color="secondary" />
-        </IconButton>
-      </TableCell>
     </TableRow>
   );
 };

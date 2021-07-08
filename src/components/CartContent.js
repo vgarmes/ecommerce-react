@@ -1,20 +1,18 @@
 import React from "react";
 import { useCartContext } from "../context/cart_context";
 import { Link } from "react-router-dom";
-import CartColumns from "./CartColumns";
+import CartTable from "./CartTable";
 import CartItem from "./CartItem";
 import CartTotals from "./CartTotals";
-import { Divider, Button } from "@material-ui/core";
+import { Box, Divider, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const CartContent = () => {
   const { cart, clearCart } = useCartContext();
+  const classes = useStyles();
   return (
-    <div>
-      <CartColumns />
-      {cart.map((item) => {
-        return <CartItem key={item.id} {...item} />;
-      })}
-      <Divider />
+    <Box className={classes.content}>
+      <CartTable cart={cart} />
       <div>
         <Button
           component={Link}
@@ -29,8 +27,15 @@ const CartContent = () => {
         </Button>
       </div>
       <CartTotals />
-    </div>
+    </Box>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  content: {
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(4),
+  },
+}));
 
 export default CartContent;

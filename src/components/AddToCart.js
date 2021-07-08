@@ -29,10 +29,12 @@ const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
         <Typography variant="body1" className={classes.stockInfo}>
           {sizeStock > 0 ? (
             <span className={classes.textSuccess}>In Stock</span>
-          ) : (
+          ) : sizeStock ? (
             <span variant="body1" className={classes.textError}>
               Out of stock
             </span>
+          ) : (
+            ""
           )}
         </Typography>
       </CardContent>

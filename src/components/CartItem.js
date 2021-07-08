@@ -23,9 +23,13 @@ const CartItem = ({ id, model, image, price, color, size, amount }) => {
   const { removeItem, toggleAmount } = useCartContext();
   const classes = useStyles();
 
-  const increase = () => {};
+  const increase = () => {
+    toggleAmount(id, "inc");
+  };
 
-  const decrease = () => {};
+  const decrease = () => {
+    toggleAmount(id, "dec");
+  };
   return (
     <TableRow key={id}>
       <TableCell>

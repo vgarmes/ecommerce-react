@@ -56,26 +56,26 @@ const cart_reducer = (state, action) => {
 
   if (action.type === TOGGLE_CART_ITEM_AMOUNT) {
     const { id, value } = action.payload;
-    const tempCart = state.cart.map((item) => {
-      if (item.id === id) {
-        if (value === "inc") {
-          let newAmount = item.amount + 1;
-          if (newAmount > item.max) {
-            newAmount = item.max;
+    const tempCart = state.cart
+      .map((item) => {
+        if (item.id === id) {
+          if (value === "inc") {
+            let newAmount = item.amount + 1;
+            if (newAmount > item.max) {
+              newAmount = item.max;
+            }
+            return { ...item, amount: newAmount };
           }
-          return { ...item, amount: newAmount };
-        }
-        if (value === "dec") {
-          let newAmount = item.amount - 1;
-          if (newAmount < 1) {
-            newAmount = 1;
+          if (value === "dec") {
+            let newAmount = item.amount - 1;
+            // if newAmount = 0, item will be removed afterwards with filter
+            return { ...item, amount: newAmount };
           }
-          return { ...item, amount: newAmount };
+        } else {
+          return item;
         }
-      } else {
-        return item;
-      }
-    });
+      })
+      .filter((item) => item.amount > 0);
     return { ...state, cart: tempCart };
   }
 

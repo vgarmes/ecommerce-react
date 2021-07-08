@@ -1,4 +1,5 @@
 import React from "react";
+import { useCartContext } from "../context/cart_context";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Table,
@@ -8,29 +9,31 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Hidden,
 } from "@material-ui/core";
+import CartItem from "./CartItem";
+import AmountButtons from "./AmountButtons";
 
 const CartColumns = ({ cart }) => {
   const classes = useStyles();
+
   return (
     <TableContainer component={Paper} className={classes.root}>
       <Table className={classes.table} aria-label="cart">
-        <TableHead>
-          <TableRow>
-            <TableCell>Item</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Subtotal</TableCell>
-          </TableRow>
-        </TableHead>
+        <Hidden xsDown>
+          <TableHead>
+            <TableRow>
+              <TableCell>Item</TableCell>
+              <TableCell align="center">Price</TableCell>
+              <TableCell align="center">Quantity</TableCell>
+              <TableCell align="center">Subtotal</TableCell>
+              <TableCell align="center">Options</TableCell>
+            </TableRow>
+          </TableHead>
+        </Hidden>
         <TableBody>
           {cart.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>{item.model}</TableCell>
-              <TableCell>{item.price}</TableCell>
-              <TableCell>Amount buttons</TableCell>
-              <TableCell>Subtotal</TableCell>
-            </TableRow>
+            <CartItem {...item} />
           ))}
         </TableBody>
       </Table>
@@ -43,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 650,
+    minWidth: 300,
   },
 }));
 

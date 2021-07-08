@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CartTable from "./CartTable";
 import CartItem from "./CartItem";
 import CartTotals from "./CartTotals";
-import { Box, Divider, Button } from "@material-ui/core";
+import { Paper, Box, Divider, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const CartContent = () => {

@@ -37,7 +37,7 @@ const CartTotals = () => {
             component={Link}
             to="/checkout"
             variant="contained"
-            color="secondary"
+            color="primary"
             fullWidth
           >
             Proceed to checkout

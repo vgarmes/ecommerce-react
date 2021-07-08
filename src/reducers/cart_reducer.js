@@ -8,14 +8,14 @@ import {
 
 const cart_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
-    const { id, product, variant, size, amount } = action.payload;
+    const { product, variant, size, amount } = action.payload;
     const tempItem = state.cart.find(
-      (item) => item.id === id && item.variant_id === variant.id
+      (item) => item.id === product.id + variant.id
     );
 
     if (tempItem) {
       const tempCart = state.cart.map((cartItem) => {
-        if (cartItem.id === id && cartItem.variant_id === variant.id) {
+        if (cartItem.id === product.id + variant.id) {
           let newAmount = cartItem.amount + amount;
           if (newAmount > cartItem.max) {
             newAmount = cartItem.max;
@@ -29,7 +29,8 @@ const cart_reducer = (state, action) => {
       return { ...state, cart: tempCart };
     } else {
       const newItem = {
-        id: id,
+        id: product.id + variant.id,
+        product_id: product.id,
         variant_id: variant.id,
         model: product.model,
         color: variant.color,
@@ -42,6 +43,15 @@ const cart_reducer = (state, action) => {
       };
       return { ...state, cart: [...state.cart, newItem] };
     }
+  }
+
+  if (action.type === REMOVE_CART_ITEM) {
+    const tempCart = state.cart.filter((item) => item.id !== action.payload);
+    return { ...state, cart: tempCart };
+  }
+
+  if (action.type === CLEAR_CART) {
+    return { ...state, cart: [] };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

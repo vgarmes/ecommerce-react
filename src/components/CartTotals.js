@@ -16,7 +16,6 @@ import { makeStyles } from "@material-ui/core/styles";
 const CartTotals = () => {
   const { total_amount, shipping_fee } = useCartContext();
   const classes = useStyles();
-  console.log(total_amount);
   return (
     <Box component="section" display="flex" className={classes.root}>
       <Card component="article" className={classes.card}>

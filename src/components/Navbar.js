@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
+import { useUserContext } from "../context/user_context";
 import {
   AppBar,
   Toolbar,
@@ -21,6 +22,7 @@ import {
   Menu as MenuIcon,
   AccountCircle,
   ShoppingCart,
+  ExitToApp,
 } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -33,6 +35,7 @@ import NavHeader from "./NavHeader";
 const Navbar = () => {
   const { openSidebar } = useProductsContext();
   const { total_items } = useCartContext();
+  const { loginWithRedirect, myUser, logout } = useUserContext();
   const classes = useStyles();
 
   return (
@@ -73,14 +76,23 @@ const Navbar = () => {
               </Badge>
             </IconButton>
 
-            <IconButton
-              component={Link}
-              to="/"
-              aria-label="Log in"
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            {myUser ? (
+              <IconButton
+                aria-label="Log out"
+                color="inherit"
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                <ExitToApp />
+              </IconButton>
+            ) : (
+              <IconButton
+                aria-label="Log in"
+                color="inherit"
+                onClick={loginWithRedirect}
+              >
+                <AccountCircle />
+              </IconButton>
+            )}
 
             <Hidden mdUp>
               <IconButton

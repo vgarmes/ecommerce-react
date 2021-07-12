@@ -20,6 +20,30 @@ const steps = ["Shipping address", "Payment details"];
 const CheckoutPage = () => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
+  const [shippingData, setShippingData] = useState({});
+
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+
+  const Form = () => {
+    if (activeStep === 0) {
+      return <AdressForm submitShippingData={submitShippingData} />;
+    } else if (activeStep === 1) {
+      return <PaymentForm />;
+    } else {
+      return <Confirmation />;
+    }
+  };
+
+  const Confirmation = () => {
+    return <div>Confirmation</div>;
+  };
+
+  const submitShippingData = (data) => {
+    console.log(data);
+    setShippingData(data);
+    nextStep();
+  };
 
   return (
     <Container component="main">
@@ -32,26 +56,10 @@ const CheckoutPage = () => {
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length ? (
-          <Confirmation />
-        ) : (
-          <Form activeStep={activeStep} />
-        )}
+        <Form />
       </Paper>
     </Container>
   );
-};
-
-const Form = ({ activeStep }) => {
-  if (activeStep === 0) {
-    return <AdressForm />;
-  } else {
-    return <PaymentForm />;
-  }
-};
-
-const Confirmation = () => {
-  return <div>Confirmation</div>;
 };
 
 const useStyles = makeStyles((theme) => ({

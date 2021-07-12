@@ -18,6 +18,7 @@ import SizeSelector from "./SizeSelector";
 import Filters from "./Filters";
 import Sort from "./Sort";
 import CartContent from "./CartContent";
+import StripeCheckout from "./StripeCheckout";
 export {
   Navbar,
   Footer,
@@ -39,4 +40,5 @@ export {
   Filters,
   Sort,
   CartContent,
+  StripeCheckout,
 };

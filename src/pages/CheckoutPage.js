@@ -10,15 +10,18 @@ import {
   Divider,
   Button,
 } from "@material-ui/core";
-import { PageBreadcrumbs } from "../components";
+import { PageBreadcrumbs, CartEmpty } from "../components";
 import { makeStyles } from "@material-ui/core/styles";
 import AdressForm from "../components/Checkout/AdressForm";
 import PaymentForm from "../components/Checkout/PaymentForm";
+import { useCartContext } from "../context/cart_context";
+import { Link } from "react-router-dom";
 
 const steps = ["Shipping address", "Payment details"];
 
 const CheckoutPage = () => {
   const classes = useStyles();
+  const { cart } = useCartContext();
   const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
 
@@ -44,6 +47,10 @@ const CheckoutPage = () => {
     setShippingData(data);
     nextStep();
   };
+
+  if (cart.length < 1) {
+    return <CartEmpty title="Checkout" />;
+  }
 
   return (
     <Container component="main">

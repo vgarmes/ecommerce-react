@@ -19,6 +19,7 @@ import Filters from "./Filters";
 import Sort from "./Sort";
 import CartContent from "./CartContent";
 import StripeCheckout from "./StripeCheckout";
+import CartEmpty from "./CartEmpty";
 export {
   Navbar,
   Footer,
@@ -41,4 +42,5 @@ export {
   Sort,
   CartContent,
   StripeCheckout,
+  CartEmpty,
 };

@@ -11,6 +11,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { PageBreadcrumbs, CartEmpty } from "../components";
+import StripeCheckout from "../components/StripeCheckout";
 import { makeStyles } from "@material-ui/core/styles";
 import AdressForm from "../components/Checkout/AdressForm";
 import PaymentForm from "../components/Checkout/PaymentForm";
@@ -22,7 +23,7 @@ const steps = ["Shipping address", "Payment details"];
 const CheckoutPage = () => {
   const classes = useStyles();
   const { cart } = useCartContext();
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
   const [shippingData, setShippingData] = useState({});
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -32,7 +33,7 @@ const CheckoutPage = () => {
     if (activeStep === 0) {
       return <AdressForm submitShippingData={submitShippingData} />;
     } else if (activeStep === 1) {
-      return <PaymentForm />;
+      return <StripeCheckout />;
     } else {
       return <Confirmation />;
     }

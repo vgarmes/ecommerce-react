@@ -22,73 +22,72 @@ const Footer = (props) => {
 
   const { width } = props;
   return (
-    <footer className={classes.footerInner}>
-      <Container>
-        <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
-          <Grid item xs={12} md={6}>
-            <form>
-              <Box display="flex" flexDirection="column">
-                <Box mb={1}>
-                  <form action="https://formspree.io/f/xayajbar" method="POST">
-                    <TextField
-                      type="email"
-                      name="_replyto"
-                      variant="outlined"
-                      placeholder="Your e-mail"
-                      inputProps={{ "aria-label": "Get newsletter" }}
-                      InputProps={{
-                        className: classes.whiteBg,
-                      }}
-                      fullWidth
-                      required
-                    />
-                    <Button
-                      className={classes.newsletterBtn}
-                      variant="outlined"
-                      type="submit"
-                    >
-                      Send me the newsletter!
-                    </Button>
-                  </form>
-                </Box>
+    <Container component="footer" className={classes.footerInner}>
+      <Grid container spacing={isWidthUp("md", width) ? 10 : 5}>
+        <Grid item xs={12} md={6}>
+          <form>
+            <Box display="flex" flexDirection="column">
+              <Box mb={1}>
+                <form action="https://formspree.io/f/xayajbar" method="POST">
+                  <TextField
+                    type="email"
+                    name="_replyto"
+                    variant="outlined"
+                    placeholder="Your e-mail"
+                    inputProps={{ "aria-label": "Get newsletter" }}
+                    InputProps={{
+                      className: classes.whiteBg,
+                    }}
+                    fullWidth
+                    required
+                  />
+                  <Button
+                    className={classes.newsletterBtn}
+                    variant="outlined"
+                    type="submit"
+                  >
+                    Send me the newsletter!
+                  </Button>
+                </form>
               </Box>
-            </form>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" paragraph className="text-white">
-              Contact
-            </Typography>
-            <Box display="flex">
-              <IconButton className={classes.socialIcon} aria-label="Instagram">
-                <InstagramIcon />
-              </IconButton>
-              <IconButton className={classes.socialIcon} aria-label="Twitter">
-                <TwitterIcon />
-              </IconButton>
-              <IconButton className={classes.socialIcon} aria-label="Facebook">
-                <FacebookIcon />
-              </IconButton>
             </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography
-              variant="body2"
-              paragraph
-              align="center"
-              className="text-white"
-            >
-              &copy; {new Date().getFullYear()} eCommerce
-            </Typography>
-          </Grid>
+          </form>
         </Grid>
-      </Container>
-    </footer>
+        <Grid item xs={12} md={6}>
+          <Typography variant="h6" paragraph className="text-white">
+            Contact
+          </Typography>
+          <Box display="flex">
+            <IconButton className={classes.socialIcon} aria-label="Instagram">
+              <InstagramIcon />
+            </IconButton>
+            <IconButton className={classes.socialIcon} aria-label="Twitter">
+              <TwitterIcon />
+            </IconButton>
+            <IconButton className={classes.socialIcon} aria-label="Facebook">
+              <FacebookIcon />
+            </IconButton>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography
+            variant="body2"
+            paragraph
+            align="center"
+            className="text-white"
+          >
+            &copy; {new Date().getFullYear()} eCommerce
+          </Typography>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
   footerInner: {
     backgroundColor: theme.palette.common.darkBlack,
+    marginTop: theme.spacing(4),
     paddingTop: theme.spacing(8),
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),

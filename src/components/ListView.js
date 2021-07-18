@@ -1,20 +1,8 @@
 import React from "react";
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Typography,
-  IconButton,
-  Box,
-  Grid,
-  Button,
-} from "@material-ui/core";
-import { AddShoppingCart } from "@material-ui/icons";
+import { Typography, Box, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
-import products_reducer from "../reducers/products_reducer";
 import { formatPrice } from "../utils/helpers";
 
 const ListView = ({ products }) => {
@@ -37,8 +25,11 @@ const ListView = ({ products }) => {
             </ImageContainer>
 
             <Box className={classes.productInfo}>
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" paragraph>
                 {model}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" gutterBottom>
+                {brand}
               </Typography>
               <Typography variant="h6">{formatPrice(price)}</Typography>
               <Typography variant="body1" gutterBottom>
@@ -80,23 +71,6 @@ const ImageContainer = styled.div`
     height: 200px;
     object-fit: cover;
     border-radius: var(--radius);
-  }
-`;
-
-const ColorButton = styled.button`
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50%;
-  background: ${(props) => (props.color ? props.color : "#222")};
-  margin-left: 0.5rem;
-  border: ${(props) => (props.color === "#FFFFFF" ? "1px solid #222" : "none")};
-  cursor: pointer;
-  opacity: ${(props) => (props.isActive ? "1" : "0.5")};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  svg {
-    color: #fff;
   }
 `;
 

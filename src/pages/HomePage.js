@@ -1,5 +1,5 @@
 import React from "react";
-import { NavbarGap, FeaturedProducts, ProductList, Hero } from "../components";
+import { NavbarGap, FeaturedProducts, Hero } from "../components";
 
 const HomePage = () => {
   return (

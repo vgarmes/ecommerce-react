@@ -1,17 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Button,
-  Grid,
-  Typography,
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  FormControl,
-  InputLabel,
-  Select,
-} from "@material-ui/core";
+import { FormControl, InputLabel, Select } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const SizeSelector = ({ variant = {}, size, setSize, setSizeStock }) => {

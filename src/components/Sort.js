@@ -6,13 +6,7 @@ import {
   ButtonGroup,
   Button,
   Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  NativeSelect,
-  MenuItem,
   Divider,
-  Grid,
 } from "@material-ui/core";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -28,11 +22,6 @@ const Sort = () => {
     updateSort,
   } = useFilterContext();
 
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   return (
     <Box
       display="flex"

@@ -1,5 +1,4 @@
 import React from "react";
-import { useCartContext } from "../context/cart_context";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Table,
@@ -12,7 +11,6 @@ import {
   Hidden,
 } from "@material-ui/core";
 import CartItem from "./CartItem";
-import AmountButtons from "./AmountButtons";
 
 const CartColumns = ({ cart }) => {
   const classes = useStyles();

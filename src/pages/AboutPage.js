@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { PageBreadcrumbs } from "../components";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Container, Typography, Grid, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, Typography, Grid } from "@material-ui/core";
 import aboutImg from "../assets/images/about.jpg";
 
 const AboutPage = () => {

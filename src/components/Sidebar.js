@@ -1,29 +1,17 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { useProductsContext } from "../context/products_context";
 import {
-  AppBar,
   Toolbar,
   IconButton,
-  Badge,
-  MenuItem,
-  Menu,
   Typography,
-  Button,
   Drawer,
   List,
   ListItem,
   ListItemText,
-  ListItemIcon,
   Box,
 } from "@material-ui/core";
-import {
-  Menu as MenuIcon,
-  Close as CloseIcon,
-  AccountCircle,
-  ShoppingCart,
-} from "@material-ui/icons";
+import { Close as CloseIcon } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { links } from "../utils/constants";
 import NavHeader from "./NavHeader";

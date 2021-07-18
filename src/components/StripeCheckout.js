@@ -6,13 +6,10 @@ import {
   Elements,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Button } from "@material-ui/core";
 import axios from "axios";
 import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
 import { formatPrice } from "../utils/helpers";
-import { useHistory } from "react-router-dom";
-import { Container } from "@material-ui/core";
 import styled from "styled-components";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -20,7 +17,6 @@ const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
   const { myUser } = useUserContext();
-  const history = useHistory();
 
   //Stripe:
   const [succeeded, setSucceeded] = useState(false);

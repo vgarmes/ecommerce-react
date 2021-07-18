@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { Container, Typography, Breadcrumbs, Link } from "@material-ui/core";
+import { Typography, Breadcrumbs, Link } from "@material-ui/core";
 import { NavbarGap } from "../components";
 
 const PageBreadcrumbs = ({ title, path = [] }) => {

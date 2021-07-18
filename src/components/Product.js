@@ -3,16 +3,12 @@ import {
   Card,
   CardMedia,
   CardContent,
-  CardActions,
   Typography,
-  IconButton,
   Box,
 } from "@material-ui/core";
-import { AddShoppingCart } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
-import products_reducer from "../reducers/products_reducer";
 import { formatPrice } from "../utils/helpers";
 
 const Product = ({ id, model, brand, price, variants }) => {

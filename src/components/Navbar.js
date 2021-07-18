@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { useProductsContext } from "../context/products_context";
 import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
@@ -7,16 +7,8 @@ import {
   Toolbar,
   IconButton,
   Badge,
-  MenuItem,
-  Menu,
-  Typography,
   Hidden,
   Button,
-  Grid,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
@@ -26,10 +18,8 @@ import {
 } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
-import logo from "../assets/images/logo-192x192.png";
 import { links } from "../utils/constants";
 import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar";
 import NavHeader from "./NavHeader";
 
 const Navbar = () => {

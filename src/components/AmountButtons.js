@@ -1,19 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import {
-  Box,
-  ButtonGroup,
-  IconButton,
-  Button,
-  Typography,
-  useMediaQuery,
-} from "@material-ui/core";
-import { Add as AddIcon, Remove as RemoveIcon } from "@material-ui/icons";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Box, IconButton, Typography, useMediaQuery } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 import { AddCircleOutline, RemoveCircleOutline } from "@material-ui/icons";
 
 const AmountButtons = ({ amount, increase, decrease }) => {
-  const classes = useStyles();
   const theme = useTheme();
   return (
     <Box
@@ -36,6 +26,5 @@ const AmountButtons = ({ amount, increase, decrease }) => {
     </Box>
   );
 };
-const useStyles = makeStyles((theme) => ({}));
 
 export default AmountButtons;

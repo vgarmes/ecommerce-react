@@ -15,7 +15,7 @@ import { useCartContext } from "../context/cart_context";
 
 const Addtocart = ({ product, variantIndex, setVariantIndex }) => {
   const { addToCart } = useCartContext();
-  const { id, price, variants } = product;
+  const { price, variants } = product;
   const classes = useStyles();
   const [sizeStock, setSizeStock] = useState("");
   const [size, setSize] = useState("");

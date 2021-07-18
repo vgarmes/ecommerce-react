@@ -1,15 +1,10 @@
 import React from "react";
 import { useCartContext } from "../context/cart_context";
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import { withTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
 import {
-  Table,
-  TableBody,
   TableCell,
-  TableContainer,
-  TableHead,
   TableRow,
-  Paper,
   Typography,
   Box,
   Hidden,
@@ -21,7 +16,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const CartItem = ({ id, model, image, price, color, size, amount }) => {
   const { removeItem, toggleAmount } = useCartContext();
-  const classes = useStyles();
 
   const increase = () => {
     toggleAmount(id, "inc");
@@ -88,7 +82,5 @@ const Image = withTheme(styled.img`
   object-fit: cover;
   border-radius: ${(props) => props.theme.shape.borderRadius}px;
 `);
-
-const useStyles = makeStyles((theme) => ({}));
 
 export default CartItem;

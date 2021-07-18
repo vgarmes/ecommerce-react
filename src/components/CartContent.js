@@ -2,14 +2,11 @@ import React from "react";
 import { useCartContext } from "../context/cart_context";
 import { Link } from "react-router-dom";
 import CartTable from "./CartTable";
-import CartItem from "./CartItem";
 import CartTotals from "./CartTotals";
-import { Paper, Box, Divider, Button, useMediaQuery } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Box, Button, useMediaQuery } from "@material-ui/core";
 
 const CartContent = () => {
   const { cart, clearCart } = useCartContext();
-  const classes = useStyles();
 
   return (
     <Box mt={4} mb={4}>
@@ -42,7 +39,5 @@ const CartContent = () => {
     </Box>
   );
 };
-
-const useStyles = makeStyles((theme) => ({}));
 
 export default CartContent;

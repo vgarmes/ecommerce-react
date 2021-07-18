@@ -21,9 +21,8 @@ const cart_reducer = (state, action) => {
             newAmount = cartItem.max;
           }
           return { ...cartItem, amount: newAmount };
-        } else {
-          return cartItem;
         }
+        return cartItem;
       });
 
       return { ...state, cart: tempCart };
@@ -71,9 +70,8 @@ const cart_reducer = (state, action) => {
             // if newAmount = 0, item will be removed afterwards with filter
             return { ...item, amount: newAmount };
           }
-        } else {
-          return item;
         }
+        return item;
       })
       .filter((item) => item.amount > 0);
     return { ...state, cart: tempCart };

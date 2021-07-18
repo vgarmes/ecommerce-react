@@ -1,7 +1,7 @@
 import React from "react";
 import { useCartContext } from "../context/cart_context";
 import { CartContent, PageBreadcrumbs, CartEmpty } from "../components";
-import { Container, Box, Typography, Button } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 const CartPage = () => {
   const { cart } = useCartContext();

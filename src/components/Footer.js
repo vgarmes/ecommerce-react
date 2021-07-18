@@ -4,16 +4,13 @@ import {
   Typography,
   Box,
   IconButton,
-  Hidden,
-  withStyles,
-  withWidth,
   isWidthUp,
   TextField,
   Button,
   Container,
 } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import styled from "styled-components";
+import { makeStyles } from "@material-ui/core/styles";
+
 import {
   Facebook as FacebookIcon,
   Twitter as TwitterIcon,
@@ -22,7 +19,7 @@ import {
 
 const Footer = (props) => {
   const classes = useStyles();
-  const theme = useTheme();
+
   const { width } = props;
   return (
     <footer className={classes.footerInner}>

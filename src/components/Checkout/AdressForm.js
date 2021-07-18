@@ -1,25 +1,17 @@
-import React, { useState } from "react";
-import {
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
-  Grid,
-  Typography,
-  Box,
-} from "@material-ui/core";
+import React from "react";
+import { Button, Grid, Typography, Box } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import FormInput from "./FormInput";
 
-const shippingCategories = [
+/*const shippingCategories = [
   { name: "express", price: 300 },
   { name: "standard", price: 0 },
-];
+];*/
 
 const AdressForm = ({ submitShippingData }) => {
   const methods = useForm();
 
-  const [shippingOption, setShippingOption] = useState({});
+  //const [shippingOption, setShippingOption] = useState({});
 
   return (
     <>

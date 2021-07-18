@@ -2,30 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useProductsContext } from "../context/products_context";
 import { single_product_url as url } from "../utils/constants";
-import { formatPrice } from "../utils/helpers";
 import {
   Loading,
   Error,
   PageBreadcrumbs,
-  ProductImages,
   Stars,
   AddToCart,
 } from "../components";
-import { Link } from "react-router-dom";
 import {
   Container,
-  Button,
   Grid,
   Typography,
-  Box,
-  Card,
-  CardActions,
-  CardContent,
   Table,
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Paper,
 } from "@material-ui/core";
@@ -34,7 +25,7 @@ import styled from "styled-components";
 
 const SingleProductPage = () => {
   const classes = useStyles();
-  const { id, variant_id } = useParams();
+  const { id } = useParams();
   const history = useHistory();
   const {
     single_product_loading: loading,
@@ -46,6 +37,7 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${url}${id}`);
+    // eslint-disable-next-line
   }, [id]);
 
   useEffect(() => {
@@ -54,6 +46,7 @@ const SingleProductPage = () => {
         history.push("/");
       }, 3000);
     }
+    // eslint-disable-next-line
   }, [error]);
 
   if (loading) {
@@ -63,17 +56,7 @@ const SingleProductPage = () => {
     return <Error />;
   }
 
-  const {
-    model,
-    brand,
-    price,
-    description,
-    stock,
-    stars,
-    reviews,
-    id: sku,
-    variants,
-  } = product;
+  const { model, brand, description, stars, reviews, variants } = product;
 
   return (
     <main>

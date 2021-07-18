@@ -9,8 +9,6 @@ import {
   IconButton,
   Typography,
   Button,
-  FormControl,
-  InputLabel,
   Select,
   Slider,
 } from "@material-ui/core";
@@ -168,7 +166,6 @@ const Filters = () => {
           </Typography>
           <Typography variant="body2">{formatPrice(price)}</Typography>
           <CustomSlider
-            valueLabelDisplay="auto"
             aria-label="price slider"
             min={min_price}
             max={max_price}

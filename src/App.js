@@ -8,7 +8,6 @@ import {
   Cart,
   Error,
   Checkout,
-  PrivateRoute,
 } from "./pages";
 import { Navbar, Sidebar, Footer } from "./components";
 

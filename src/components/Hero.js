@@ -1,14 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import {
-  Box,
-  Typography,
-  Container,
-  Button,
-  withWidth,
-  isWidthUp,
-} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Typography, Button, isWidthUp } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import heroImg from "../assets/images/about.jpg";
 
@@ -82,19 +75,6 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.5);
-  }
-`;
-
-const HeroImage = styled.img`
-  &:after {
-    content: "";
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 1);
-    z-index: 0;
   }
 `;
 

@@ -19,8 +19,9 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  Box,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
 
 const SingleProductPage = () => {
@@ -59,105 +60,113 @@ const SingleProductPage = () => {
   const { model, brand, description, stars, reviews, variants } = product;
 
   return (
-    <main>
+    <Container component="main">
       <PageBreadcrumbs
-        title="Product"
+        title={`${brand} ${model}`}
         path={[{ id: "products", name: "Products", url: "/products" }]}
       />
-      <Container component="section" className={classes.gridContainer}>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            {variants && (
-              <MainProductImage
-                src={variants[variantIndex].image.file.url}
-                alt={variants[variantIndex].image.title}
-              />
-            )}
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography className="text-capitalize" variant="h3">
-              {model}
-            </Typography>
-            <Typography
-              className="text-capitalize"
-              variant="body2"
-              color="textSecondary"
-              gutterBottom
-            >
-              {brand}
-            </Typography>
-            <Stars stars={stars} reviews={reviews} />
+      <Grid
+        container
+        component="section"
+        spacing={4}
+        className={classes.gridContainer}
+      >
+        <Grid item xs={12} md={6}>
+          {variants && (
+            <MainProductImage
+              src={variants[variantIndex].image.file.url}
+              alt={variants[variantIndex].image.title}
+            />
+          )}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography className="text-capitalize" variant="h3">
+            {model}
+          </Typography>
+          <Typography
+            className="text-capitalize"
+            variant="h4"
+            color="textSecondary"
+            gutterBottom
+          >
+            {brand}
+          </Typography>
+
+          <Stars stars={stars} reviews={reviews} />
+
+          <Box mt={2} mb={2}>
             <Typography variant="body1" gutterBottom>
               {description}
             </Typography>
-            <AddToCart
-              product={product}
-              variantIndex={variantIndex}
-              setVariantIndex={setVariantIndex}
-            />
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} md={6}>
-            <TableContainer component={Paper}>
-              <Table aria-label="product specifications">
-                <TableBody>
-                  <TableRow>
-                    <TableCell
-                      className={classes.rowHeader}
-                      component="th"
-                      scope="row"
+          <AddToCart
+            product={product}
+            variantIndex={variantIndex}
+            setVariantIndex={setVariantIndex}
+          />
+          <TableContainer component={Paper} className={classes.tableContainer}>
+            <Table aria-label="product specifications">
+              <TableBody>
+                <TableRow>
+                  <TableCell
+                    className={classes.rowHeader}
+                    component="th"
+                    scope="row"
+                  >
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      className={classes.rowHeaderText}
                     >
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        className={classes.rowHeaderText}
-                      >
-                        SKU
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      {variants && variants[variantIndex].id}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell
-                      className={classes.rowHeader}
-                      component="th"
-                      scope="row"
+                      SKU
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right">
+                    {variants && variants[variantIndex].id}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell
+                    className={classes.rowHeader}
+                    component="th"
+                    scope="row"
+                  >
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      className={classes.rowHeaderText}
                     >
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        className={classes.rowHeaderText}
-                      >
-                        Company
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Typography className="text-capitalize" variant="body2">
-                        {brand}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
+                      Company
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Typography className="text-capitalize" variant="body2">
+                      {brand}
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Grid>
-      </Container>
-    </main>
+      </Grid>
+    </Container>
   );
 };
 
 const useStyles = makeStyles((theme) => ({
   gridContainer: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0.25),
   },
   stockInfo: {
     fontWeight: "bold",
   },
   textSuccess: {
     color: "green",
+  },
+  tableContainer: {
+    marginTop: theme.spacing(4),
   },
   rowHeader: {
     backgroundColor: theme.palette.action.hover,
@@ -167,12 +176,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MainProductImage = styled.img`
+const MainProductImage = withTheme(styled.img`
   width: 100%;
   height: 400px;
+  @media (min-width: ${(props) => props.theme.breakpoints.values.md}px) {
+    height: 650px;
+  }
   display: block;
   border-radius: var(--radius);
   object-fit: cover;
-`;
+`);
 
 export default SingleProductPage;

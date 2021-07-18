@@ -90,6 +90,10 @@ const filter_reducer = (state, action) => {
       );
     }
 
+    if (brand !== "all") {
+      tempProducts = tempProducts.filter((product) => product.brand === brand);
+    }
+
     if (color !== "all") {
       tempProducts = tempProducts.filter((product) => {
         return product.variants.find((variant) => variant.hex === color);

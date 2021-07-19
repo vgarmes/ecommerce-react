@@ -60,13 +60,13 @@ export const FilterProvider = ({ children }) => {
     // currentTarget is used so we get the name of the element that the event listener is attached to,
     // and not the element that triggered the event (clicked on)
     let name = e.currentTarget.name;
-    let value = e.target.value;
+    let value = e.currentTarget.value;
 
     if (name === "category") {
-      value = e.target.textContent;
+      value = e.currentTarget.textContent;
     }
     if (name === "color") {
-      value = e.target.dataset.color;
+      value = e.currentTarget.dataset.color;
     }
 
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } });

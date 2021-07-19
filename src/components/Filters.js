@@ -33,8 +33,7 @@ const Filters = () => {
 
   const handleSlider = (name, value) => {
     const e = {
-      currentTarget: { name: name },
-      target: { value: value },
+      currentTarget: { name: name, value: value },
     };
 
     updateFilters(e);

@@ -22,16 +22,16 @@ const Product = ({ id, model, brand, price, variants }) => {
           title={model}
         />
         <CardContent>
-          <Typography variant="h6" className={classes.productText}>
+          <Typography variant="body1" className={classes.productText}>
             {model}
           </Typography>
           <Typography variant="body2" color="textSecondary" gutterBottom>
             {brand}
           </Typography>
-          <Typography variant="body1" className={classes.productPrice}>
+          <Typography variant="body2" className={classes.productPrice}>
             {formatPrice(price)}
           </Typography>
-          <Box display="flex" justifyContent="flex-end">
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
             {variants.map(({ id, hex }) => (
               <ColorButton key={id} color={hex} />
             ))}
@@ -74,7 +74,10 @@ const ColorButton = styled.button`
   margin-left: 0.5rem;
   border: ${(props) => (props.color === "#FFFFFF" ? "1px solid #222" : "none")};
   cursor: pointer;
-  opacity: ${(props) => (props.isActive ? "1" : "0.5")};
+  opacity: 0.75;
+  &:hover {
+    opacity: 1;
+  }
   display: flex;
   align-items: center;
   justify-content: center;

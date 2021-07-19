@@ -2,7 +2,7 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import logo from "../assets/images/logo-192x192.png";
+import logo from "../assets/images/logo192.png";
 import { Link } from "react-router-dom";
 
 const NavHeader = () => {
@@ -16,7 +16,7 @@ const NavHeader = () => {
       color="inherit"
     >
       <LogoImage src={logo} alt="ecommerce logo" />
-      eCommerce
+      ninetynine sports
     </Typography>
   );
 };

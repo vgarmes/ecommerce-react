@@ -19,7 +19,7 @@ const Hero = (props) => {
         height="100%"
       >
         <Typography variant={isWidthUp("lg", width) ? "h1" : "h3"}>
-          eCommerce
+          ninetynine sports
         </Typography>
         <Typography variant={isWidthUp("lg", width) ? "h3" : "h6"}>
           The best webshop for sports clothes

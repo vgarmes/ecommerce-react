@@ -10,7 +10,7 @@ const GridView = ({ products }) => {
       container
       component="section"
       className={classes.gridContainer}
-      spacing={4}
+      spacing={2}
     >
       {products.map((product) => (
         <Grid

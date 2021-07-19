@@ -76,7 +76,7 @@ const Footer = (props) => {
             align="center"
             className="text-white"
           >
-            &copy; {new Date().getFullYear()} eCommerce
+            &copy; {new Date().getFullYear()} ninetynine sports
           </Typography>
         </Grid>
       </Grid>

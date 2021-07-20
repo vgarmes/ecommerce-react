@@ -4,6 +4,7 @@ import {
   COUNT_CART_TOTALS,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
+  SAVE_SHIPPING_DATA,
 } from "../actions";
 
 const cart_reducer = (state, action) => {
@@ -91,6 +92,10 @@ const cart_reducer = (state, action) => {
       }
     );
     return { ...state, total_items, total_amount };
+  }
+
+  if (action.type === SAVE_SHIPPING_DATA) {
+    return { ...state, shipping_data: action.payload };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

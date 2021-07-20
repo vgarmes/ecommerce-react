@@ -6,6 +6,7 @@ import {
   TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
   COUNT_CART_TOTALS,
+  SAVE_SHIPPING_DATA,
 } from "../actions";
 
 const getLocalStorage = () => {
@@ -22,6 +23,7 @@ const initialState = {
   total_items: 0,
   total_amount: 0,
   shipping_fee: 0,
+  shipping_data: {},
 };
 
 const CartContext = React.createContext();
@@ -39,6 +41,7 @@ export const CartProvider = ({ children }) => {
   const removeItem = (id) => {
     dispatch({ type: REMOVE_CART_ITEM, payload: id });
   };
+
   const toggleAmount = (id, value) => {
     dispatch({ type: TOGGLE_CART_ITEM_AMOUNT, payload: { id, value } });
   };
@@ -52,9 +55,20 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
+  const saveShippingData = (shippingData) => {
+    dispatch({ type: SAVE_SHIPPING_DATA, payload: shippingData });
+  };
+
   return (
     <CartContext.Provider
-      value={{ ...state, addToCart, removeItem, toggleAmount, clearCart }}
+      value={{
+        ...state,
+        addToCart,
+        removeItem,
+        toggleAmount,
+        clearCart,
+        saveShippingData,
+      }}
     >
       {children}
     </CartContext.Provider>

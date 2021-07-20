@@ -15,7 +15,8 @@ import styled from "styled-components";
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
-  const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
+  const { cart, total_amount, shipping_fee, clearCart, shipping_data } =
+    useCartContext();
   const { myUser } = useUserContext();
 
   //Stripe:
@@ -93,7 +94,7 @@ const CheckoutForm = () => {
         </article>
       ) : (
         <article>
-          <h4>Hello, {myUser && myUser.name}</h4>
+          <h4>Hello, {myUser ? myUser : shipping_data.firstName}</h4>
           <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
           <p>Test Card Number: 4242 4242 4242 4242</p>
         </article>

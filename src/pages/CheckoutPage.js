@@ -6,12 +6,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import AdressForm from "../components/Checkout/AdressForm";
 import { useCartContext } from "../context/cart_context";
 
-const steps = ["Shipping address", "Payment details"];
+const steps = ["Shipping address", "Payment details", "Confirmation"];
 
 const CheckoutPage = () => {
   const classes = useStyles();
   const { cart } = useCartContext();
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
   const [shippingData, setShippingData] = useState({});
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -19,11 +19,11 @@ const CheckoutPage = () => {
 
   const Form = () => {
     if (activeStep === 0) {
-      return <AdressForm submitShippingData={submitShippingData} />;
+      return <AdressForm nextStep={nextStep} />;
     } else if (activeStep === 1) {
       return <StripeCheckout />;
     } else {
-      return <Confirmation shippingData={shippingData} />;
+      return <Confirmation />;
     }
   };
 

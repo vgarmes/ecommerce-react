@@ -12,7 +12,6 @@ const CheckoutPage = () => {
   const classes = useStyles();
   const { cart } = useCartContext();
   const [activeStep, setActiveStep] = useState(0);
-  const [shippingData, setShippingData] = useState({});
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   //const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -29,11 +28,6 @@ const CheckoutPage = () => {
 
   const Confirmation = () => {
     return <div>Confirmation</div>;
-  };
-
-  const submitShippingData = (data) => {
-    setShippingData(data);
-    nextStep();
   };
 
   if (cart.length < 1) {

@@ -2,14 +2,16 @@ import React from "react";
 import { Button, Grid, Typography, Box } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import FormInput from "./FormInput";
+import { useCartContext } from "../../context/cart_context";
 
 /*const shippingCategories = [
   { name: "express", price: 300 },
   { name: "standard", price: 0 },
 ];*/
 
-const AdressForm = ({ submitShippingData }) => {
+const AdressForm = ({ nextStep }) => {
   const methods = useForm();
+  const { saveShippingData } = useCartContext();
 
   //const [shippingOption, setShippingOption] = useState({});
 
@@ -20,9 +22,10 @@ const AdressForm = ({ submitShippingData }) => {
       </Typography>
       <FormProvider {...methods}>
         <form
-          onSubmit={methods.handleSubmit((data) =>
-            submitShippingData({ ...data })
-          )}
+          onSubmit={methods.handleSubmit((data) => {
+            saveShippingData({ ...data });
+            nextStep();
+          })}
         >
           <Grid container spacing={3}>
             <FormInput required name="firstName" label="First name" />

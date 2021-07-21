@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { Container, Paper, Stepper, Step, StepLabel } from "@material-ui/core";
+import {
+  Container,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  useMediaQuery,
+} from "@material-ui/core";
 import { PageBreadcrumbs, CartEmpty } from "../components";
 import StripeCheckout from "../components/StripeCheckout";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AdressForm from "../components/Checkout/AdressForm";
 import { useCartContext } from "../context/cart_context";
 
@@ -10,8 +17,10 @@ const steps = ["Shipping address", "Payment details", "Confirmation"];
 
 const CheckoutPage = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const { cart } = useCartContext();
   const [activeStep, setActiveStep] = useState(0);
+  const smallScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
   //const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -41,7 +50,7 @@ const CheckoutPage = () => {
         <Stepper activeStep={activeStep} className={classes.stepper}>
           {steps.map((step) => (
             <Step key={step}>
-              <StepLabel>{step}</StepLabel>
+              <StepLabel>{smallScreen ? "" : step}</StepLabel>
             </Step>
           ))}
         </Stepper>
@@ -62,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
   stepper: {
     padding: theme.spacing(3, 0, 5),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       padding: theme.spacing(3, 10, 5),
     },
   },

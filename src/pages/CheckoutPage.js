@@ -6,6 +6,8 @@ import {
   Step,
   StepLabel,
   useMediaQuery,
+  Box,
+  Button,
 } from "@material-ui/core";
 import { PageBreadcrumbs, CartEmpty } from "../components";
 import StripeCheckout from "../components/StripeCheckout";
@@ -27,7 +29,22 @@ const CheckoutPage = () => {
 
   const Form = () => {
     if (activeStep === 0) {
-      return <AdressForm nextStep={nextStep} />;
+      return (
+        <>
+          <AdressForm />
+          <Box display="flex" justifyContent="flex-end" mt={4} mb={2}>
+            <Button
+              form="address-form"
+              type="submit"
+              variant="contained"
+              color="primary"
+              onClick={nextStep}
+            >
+              Next
+            </Button>
+          </Box>
+        </>
+      );
     } else if (activeStep === 1) {
       return <StripeCheckout />;
     } else {

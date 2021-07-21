@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Typography, Box } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import FormInput from "./FormInput";
 import { useCartContext } from "../../context/cart_context";
@@ -17,14 +17,14 @@ const AdressForm = ({ nextStep }) => {
 
   return (
     <>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h6" align="center" gutterBottom>
         Shipping Address
       </Typography>
       <FormProvider {...methods}>
         <form
+          id="address-form"
           onSubmit={methods.handleSubmit((data) => {
             saveShippingData({ ...data });
-            nextStep();
           })}
         >
           <Grid container spacing={3}>
@@ -35,11 +35,6 @@ const AdressForm = ({ nextStep }) => {
             <FormInput required name="city" label="City" />
             <FormInput required name="zip" label="Postal code" />
           </Grid>
-          <Box display="flex" justifyContent="flex-end" mt={4} mb={2}>
-            <Button type="submit" variant="contained" color="primary">
-              Next
-            </Button>
-          </Box>
         </form>
       </FormProvider>
     </>

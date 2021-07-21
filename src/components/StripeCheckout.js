@@ -6,6 +6,7 @@ import {
   Elements,
   useElements,
 } from "@stripe/react-stripe-js";
+import { Typography } from "@material-ui/core";
 import axios from "axios";
 import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
@@ -94,9 +95,15 @@ const CheckoutForm = () => {
         </article>
       ) : (
         <article>
-          <h4>Hello, {myUser ? myUser : shipping_data.firstName}</h4>
-          <p>Your total is {formatPrice(shipping_fee + total_amount)}</p>
-          <p>Test Card Number: 4242 4242 4242 4242</p>
+          <Typography variant="h6" align="center">
+            Hello, {myUser ? myUser : shipping_data.firstName}
+          </Typography>
+          <Typography variant="body1" align="center">
+            Your total is {formatPrice(shipping_fee + total_amount)}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" align="center">
+            Card number for test purposes: 4242 4242 4242 4242
+          </Typography>
         </article>
       )}
       <form id="payment-form" onSubmit={handleSubmit}>
@@ -107,7 +114,11 @@ const CheckoutForm = () => {
         />
         <button disabled={processing || disabled || succeeded} id="submit">
           <span id="button-text">
-            {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
+            {processing ? (
+              <div className="spinner" id="spinner"></div>
+            ) : (
+              `Pay ${formatPrice(shipping_fee + total_amount)}`
+            )}
           </span>
         </button>
         {/* Show any error that happens when processing payment */}
@@ -144,13 +155,12 @@ const StripeCheckout = () => {
 const Wrapper = styled.section`
   form {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     align-self: center;
-    box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-      0px 2px 5px 0px rgba(50, 50, 93, 0.1),
-      0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
-    border-radius: 7px;
+    padding: 40px 0;
+  }
+  @media and (min-width: 600px) {
     padding: 40px;
   }
   input {

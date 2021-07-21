@@ -25,20 +25,19 @@ const CheckoutPage = () => {
   const smallScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  //const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const Form = () => {
     if (activeStep === 0) {
       return (
         <>
-          <AdressForm />
+          <AdressForm secondaryAction={nextStep} />
           <Box display="flex" justifyContent="flex-end" mt={4} mb={2}>
             <Button
               form="address-form"
               type="submit"
               variant="contained"
               color="primary"
-              onClick={nextStep}
             >
               Next
             </Button>
@@ -46,7 +45,19 @@ const CheckoutPage = () => {
         </>
       );
     } else if (activeStep === 1) {
-      return <StripeCheckout />;
+      return (
+        <>
+          <StripeCheckout />
+          <Box display="flex" justifyContent="space-between" mt={4} mb={2}>
+            <Button variant="contained" color="secondary" onClick={backStep}>
+              Previous
+            </Button>
+            <Button variant="contained" color="primary" onClick={nextStep}>
+              Next
+            </Button>
+          </Box>
+        </>
+      );
     } else {
       return <Confirmation />;
     }

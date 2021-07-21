@@ -9,7 +9,7 @@ import { useCartContext } from "../../context/cart_context";
   { name: "standard", price: 0 },
 ];*/
 
-const AdressForm = ({ nextStep }) => {
+const AdressForm = ({ secondaryAction }) => {
   const methods = useForm();
   const { saveShippingData } = useCartContext();
 
@@ -25,6 +25,7 @@ const AdressForm = ({ nextStep }) => {
           id="address-form"
           onSubmit={methods.handleSubmit((data) => {
             saveShippingData({ ...data });
+            secondaryAction();
           })}
         >
           <Grid container spacing={3}>

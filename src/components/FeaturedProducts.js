@@ -2,10 +2,8 @@ import React from "react";
 import { useProductsContext } from "../context/products_context";
 import { Error, Loading, Product } from "./";
 import { Container, Typography, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 const FeaturedProducts = () => {
-  const classes = useStyles();
   const {
     products_loading: loading,
     products_error: error,
@@ -30,24 +28,16 @@ const FeaturedProducts = () => {
       >
         Featured Products
       </Typography>
-      <Container className={classes.content}>
-        <Grid container spacing={4}>
-          {featured.map((product) => (
-            <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-              <Product {...product} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+
+      <Grid container spacing={2}>
+        {featured.map((product) => (
+          <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
+            <Product {...product} />
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };
-
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  content: {
-    padding: theme.spacing(4),
-  },
-}));
 
 export default FeaturedProducts;

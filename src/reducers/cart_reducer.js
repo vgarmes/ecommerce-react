@@ -4,7 +4,7 @@ import {
   COUNT_CART_TOTALS,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
-  SAVE_SHIPPING_DATA,
+  UPDATE_ORDER_DETAILS,
 } from "../actions";
 
 const cart_reducer = (state, action) => {
@@ -32,6 +32,7 @@ const cart_reducer = (state, action) => {
         id: product.id + variant.id,
         product_id: product.id,
         variant_id: variant.id,
+        brand: product.brand,
         model: product.model,
         color: variant.color,
         hex: variant.hex,
@@ -94,8 +95,11 @@ const cart_reducer = (state, action) => {
     return { ...state, total_items, total_amount };
   }
 
-  if (action.type === SAVE_SHIPPING_DATA) {
-    return { ...state, shipping_data: action.payload };
+  if (action.type === UPDATE_ORDER_DETAILS) {
+    return {
+      ...state,
+      order_details: { ...state.order_details, ...action.payload },
+    };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

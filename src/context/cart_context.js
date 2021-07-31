@@ -6,7 +6,7 @@ import {
   TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
   COUNT_CART_TOTALS,
-  SAVE_SHIPPING_DATA,
+  UPDATE_ORDER_DETAILS,
 } from "../actions";
 
 const getLocalStorage = () => {
@@ -23,7 +23,7 @@ const initialState = {
   total_items: 0,
   total_amount: 0,
   shipping_fee: 0,
-  shipping_data: {},
+  order_details: {},
 };
 
 const CartContext = React.createContext();
@@ -55,8 +55,8 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(state.cart));
   }, [state.cart]);
 
-  const saveShippingData = (shippingData) => {
-    dispatch({ type: SAVE_SHIPPING_DATA, payload: shippingData });
+  const updateOrderDetails = (data) => {
+    dispatch({ type: UPDATE_ORDER_DETAILS, payload: data });
   };
 
   return (
@@ -67,7 +67,7 @@ export const CartProvider = ({ children }) => {
         removeItem,
         toggleAmount,
         clearCart,
-        saveShippingData,
+        updateOrderDetails,
       }}
     >
       {children}

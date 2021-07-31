@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Typography,
   Box,
@@ -12,11 +12,19 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import { withTheme } from "@material-ui/core/styles";
-import { useCartContext } from "../../context/cart_context";
 import { formatPrice } from "../../utils/helpers";
+import { useCartContext } from "../../context/cart_context";
 
 const Confirmation = () => {
-  const { order_details } = useCartContext();
+  const { cart, clearCart, order_details } = useCartContext();
+
+  useEffect(() => {
+    // check if cart is already empty in order to avoid an infinite rerendering loop
+    if (cart.length > 0) {
+      clearCart();
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Box mb={2}>

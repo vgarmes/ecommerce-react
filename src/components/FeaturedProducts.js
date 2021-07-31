@@ -24,7 +24,7 @@ const FeaturedProducts = () => {
     <Container component="section">
       <Typography
         className="section-title"
-        variant="h3"
+        variant="h4"
         align="center"
         gutterBottom
       >

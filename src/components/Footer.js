@@ -54,10 +54,18 @@ const Footer = (props) => {
           </form>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant="h6" paragraph className="text-white">
-            Contact
+          <Typography variant="body1" paragraph style={{ color: "white" }}>
+            Why Ninetynine Sports?
           </Typography>
-          <Box display="flex">
+
+          <ul style={{ color: "white", paddingInlineStart: "20px" }}>
+            <li>Free shippong on orders over $30</li>
+            <li>Personal customer service Greatest selection of products</li>
+            <li>Great selection of products</li>
+          </ul>
+        </Grid>
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="center" mb={4}>
             <IconButton className={classes.socialIcon} aria-label="Instagram">
               <InstagramIcon />
             </IconButton>
@@ -68,8 +76,6 @@ const Footer = (props) => {
               <FacebookIcon />
             </IconButton>
           </Box>
-        </Grid>
-        <Grid item xs={12}>
           <Typography
             variant="body2"
             paragraph
@@ -117,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     color: "#fff",
     padding: 0,
-    marginRight: "1em",
+    margin: theme.spacing(0, 2),
     "&:hover": {
       color: theme.palette.primary.light,
     },

@@ -23,7 +23,7 @@ const CheckoutPage = () => {
   const classes = useStyles();
   const theme = useTheme();
   const { cart } = useCartContext();
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const smallScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);

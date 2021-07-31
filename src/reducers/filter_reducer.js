@@ -80,7 +80,7 @@ const filter_reducer = (state, action) => {
 
     if (text) {
       tempProducts = tempProducts.filter((product) => {
-        return product.model.toLowerCase().startsWith(text);
+        return product.model.toLowerCase().includes(text);
       });
     }
 

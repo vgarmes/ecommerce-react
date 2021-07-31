@@ -11,7 +11,7 @@ import { useCartContext } from "../../context/cart_context";
 
 const AdressForm = ({ onSuccessAction }) => {
   const methods = useForm();
-  const { updateOrderDetails } = useCartContext();
+  const { cart, updateOrderDetails } = useCartContext();
 
   //const [shippingOption, setShippingOption] = useState({});
 
@@ -24,7 +24,7 @@ const AdressForm = ({ onSuccessAction }) => {
         <form
           id="address-form"
           onSubmit={methods.handleSubmit((data) => {
-            updateOrderDetails(data);
+            updateOrderDetails({ ...data, products: cart });
             onSuccessAction();
           })}
         >

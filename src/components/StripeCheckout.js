@@ -8,22 +8,15 @@ import {
 } from "@stripe/react-stripe-js";
 import { Typography } from "@material-ui/core";
 import axios from "axios";
-import { useCartContext } from "../context/cart_context";
 import { useUserContext } from "../context/user_context";
+import { useCartContext } from "../context/cart_context";
 import { formatPrice } from "../utils/helpers";
 import styled from "styled-components";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = ({ onSuccessAction }) => {
-  const {
-    cart,
-    total_amount,
-    shipping_fee,
-    clearCart,
-    order_details,
-    updateOrderDetails,
-  } = useCartContext();
+  const { cart, total_amount, shipping_fee, order_details } = useCartContext();
   const { myUser } = useUserContext();
 
   //Stripe:
@@ -87,8 +80,6 @@ const CheckoutForm = ({ onSuccessAction }) => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-      updateOrderDetails({ products: cart });
-      clearCart();
       onSuccessAction();
     }
   };

@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ColorButton = styled.button`
+const ColorButton = styled.div`
   height: 1rem;
   width: 1rem;
   border-radius: 50%;

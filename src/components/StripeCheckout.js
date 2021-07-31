@@ -15,9 +15,15 @@ import styled from "styled-components";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const CheckoutForm = () => {
-  const { cart, total_amount, shipping_fee, clearCart, shipping_data } =
-    useCartContext();
+const CheckoutForm = ({ onSuccessAction }) => {
+  const {
+    cart,
+    total_amount,
+    shipping_fee,
+    clearCart,
+    order_details,
+    updateOrderDetails,
+  } = useCartContext();
   const { myUser } = useUserContext();
 
   //Stripe:
@@ -81,7 +87,9 @@ const CheckoutForm = () => {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      updateOrderDetails({ products: cart });
       clearCart();
+      onSuccessAction();
     }
   };
 
@@ -96,7 +104,7 @@ const CheckoutForm = () => {
       ) : (
         <article>
           <Typography variant="h6" align="center">
-            Hello, {myUser ? myUser : shipping_data.firstName}
+            Hello, {myUser ? myUser : order_details.firstName}
           </Typography>
           <Typography variant="body1" align="center">
             Your total is {formatPrice(shipping_fee + total_amount)}
@@ -142,11 +150,11 @@ const CheckoutForm = () => {
   );
 };
 
-const StripeCheckout = () => {
+const StripeCheckout = ({ onSuccessAction }) => {
   return (
     <Wrapper>
       <Elements stripe={promise}>
-        <CheckoutForm />
+        <CheckoutForm onSuccessAction={onSuccessAction} />
       </Elements>
     </Wrapper>
   );
